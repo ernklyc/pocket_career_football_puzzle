@@ -1,0 +1,81 @@
+name: pocket_career_football_puzzle
+description: "Pocket Career: Football Puzzle - Futbol temalı kariyer bulmaca oyunu"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # Game Engine
+  flame: ^1.23.0
+
+  # Local Storage
+  shared_preferences: ^2.3.4
+  path_provider: ^2.1.5
+
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.2
+  lottie: ^3.3.1
+
+  # Utils
+  uuid: ^4.5.1
+  intl: ^0.20.2
+  collection: ^1.19.1
+  equatable: ^2.0.7
+
+  # Ads (AdMob)
+  google_mobile_ads: ^5.3.0
+
+  # In-App Purchases (RevenueCat)
+  purchases_flutter: ^8.6.0
+
+  # Firebase
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  google_sign_in: ^6.2.2
+
+  # Notifications
+  flutter_local_notifications: ^18.0.1
+
+  # Haptics
+  vibration: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  riverpod_generator: ^2.6.3
+  build_runner: ^2.4.14
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Grobold
+      fonts:
+        - asset: assets/font/GROBOLD.ttf
+
+  assets:
+    - assets/images/
+    - assets/animations/
+    - assets/buttons/
+    - assets/league/
+    - assets/pp/
+    - assets/l10n/
+    - assets/levels.json
