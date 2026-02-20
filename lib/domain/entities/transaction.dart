@@ -5,7 +5,6 @@ enum TransactionSource {
   gameplay,
   rewardedAd,
   iapRevenuecat,
-  shopPurchase,
   admin,
 }
 

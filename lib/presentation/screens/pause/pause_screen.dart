@@ -13,8 +13,8 @@ class PauseScreen extends StatelessWidget {
   static const _cardShadow = [
     BoxShadow(
       color: Colors.black26,
-      offset: Offset(0, 4),
-      blurRadius: 8,
+      offset: Offset(0, 2),
+      blurRadius: 6,
       spreadRadius: 0,
     ),
   ];
@@ -40,10 +40,7 @@ class PauseScreen extends StatelessWidget {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 320),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 28,
-                    ),
+                    padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
                         image: AssetImage('assets/buttons/paper.png'),
@@ -64,7 +61,7 @@ class PauseScreen extends StatelessWidget {
                         Text(
                           context.tr('pause_title'),
                           style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
+                            fontFamily: AppTheme.titleFontFamily,
                             color: AppColors.parchmentText,
                             fontSize: 24,
                             fontWeight: FontWeight.w900,
@@ -111,7 +108,7 @@ class PauseScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
           decoration: BoxDecoration(
             image: const DecorationImage(
               image: AssetImage('assets/buttons/paper.png'),
@@ -134,7 +131,7 @@ class PauseScreen extends StatelessWidget {
               Text(
                 context.tr('pause_quit'),
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.titleFontFamily,
                   color: AppColors.parchmentText,
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
@@ -151,7 +148,7 @@ class PauseScreen extends StatelessWidget {
               Text(
                 context.tr('pause_quit_confirm'),
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.titleFontFamily,
                   color: AppColors.parchmentTextSecondary,
                   fontSize: 14,
                 ),
@@ -165,7 +162,7 @@ class PauseScreen extends StatelessWidget {
                     child: Text(
                       context.tr('cancel'),
                       style: TextStyle(
-                        fontFamily: AppTheme.fontFamily,
+                        fontFamily: AppTheme.titleFontFamily,
                         color: AppColors.parchmentText,
                       ),
                     ),
@@ -178,8 +175,8 @@ class PauseScreen extends StatelessWidget {
                     },
                     child: Text(
                       context.tr('pause_quit'),
-                      style: const TextStyle(
-                        fontFamily: AppTheme.fontFamily,
+                      style: TextStyle(
+                        fontFamily: AppTheme.titleFontFamily,
                         color: AppColors.error,
                         fontWeight: FontWeight.w800,
                       ),
@@ -230,7 +227,7 @@ class _AssetTextButton extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-              fontFamily: AppTheme.fontFamily,
+              fontFamily: AppTheme.titleFontFamily,
               fontSize: 18,
               fontWeight: FontWeight.w800,
               color: textColor,

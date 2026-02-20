@@ -6,7 +6,6 @@ import 'package:pocket_career_football_puzzle/services/auth_service.dart';
 import 'package:pocket_career_football_puzzle/services/career_service.dart';
 import 'package:pocket_career_football_puzzle/services/currency_service.dart';
 import 'package:pocket_career_football_puzzle/services/inventory_service.dart';
-import 'package:pocket_career_football_puzzle/services/leaderboard_service.dart';
 import 'package:pocket_career_football_puzzle/services/lives_service.dart';
 import 'package:pocket_career_football_puzzle/services/progress_service.dart';
 import 'package:pocket_career_football_puzzle/services/purchases_service.dart';
@@ -16,8 +15,6 @@ import 'package:pocket_career_football_puzzle/domain/entities/career.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/game_settings.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/session_result.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/puzzle.dart';
-import 'package:pocket_career_football_puzzle/domain/entities/leaderboard_entry.dart';
-import 'package:pocket_career_football_puzzle/domain/entities/shop_item.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/transaction.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/active_cosmetics.dart';
 
@@ -36,10 +33,7 @@ final careerServiceProvider = Provider<CareerService>((ref) {
 });
 
 final inventoryServiceProvider = Provider<InventoryService>((ref) {
-  return InventoryService(
-    ref.watch(localStorageProvider),
-    ref.watch(currencyServiceProvider),
-  );
+  return InventoryService(ref.watch(localStorageProvider));
 });
 
 final progressServiceProvider = Provider<ProgressService>((ref) {
@@ -48,10 +42,6 @@ final progressServiceProvider = Provider<ProgressService>((ref) {
 
 final levelRepositoryProvider = Provider<LevelRepository>((ref) {
   return LevelRepository();
-});
-
-final leaderboardServiceProvider = Provider<LeaderboardService>((ref) {
-  return LeaderboardService(ref.watch(localStorageProvider));
 });
 
 final livesServiceProvider = Provider<LivesService>((ref) {
@@ -117,10 +107,6 @@ final appBootstrapProvider = FutureProvider<bool>((ref) async {
   // Premium durumu ads service'e bildir
   ads.setPremiumActive(purchases.isPremium);
 
-  // Simüle rakipleri oluştur (leaderboard)
-  final leaderboard = ref.read(leaderboardServiceProvider);
-  await leaderboard.ensureSimulatedOpponents();
-
   return true;
 });
 
@@ -170,15 +156,6 @@ class CoinBalanceNotifier extends StateNotifier<int> {
 
 final entitlementProvider = StateProvider<bool>((ref) {
   return ref.watch(purchasesServiceProvider).isPremium;
-});
-
-// ===== Ads Gate =====
-
-final adsGateProvider = Provider.family<bool, String>((ref, route) {
-  final premium = ref.watch(entitlementProvider);
-  if (premium) return false;
-  final ads = ref.watch(adsServiceProvider);
-  return ads.shouldShowBanner(route);
 });
 
 // ===== Settings =====
@@ -369,18 +346,6 @@ class ActiveCosmeticsNotifier extends StateNotifier<ActiveCosmetics> {
     await _storage.setActiveCosmeticsJson(state.toJsonString());
   }
 }
-
-// ===== Shop / Inventory =====
-
-final shopItemsProvider = Provider<List<ShopItem>>((ref) {
-  return ref.watch(inventoryServiceProvider).getShopItems();
-});
-
-// ===== Leaderboard =====
-
-final localLeaderboardProvider = Provider<List<LeaderboardEntry>>((ref) {
-  return ref.watch(leaderboardServiceProvider).loadLocalLeaderboard();
-});
 
 // ===== Auth =====
 

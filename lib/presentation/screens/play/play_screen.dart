@@ -3,19 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
+import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/puzzle.dart';
-import 'package:pocket_career_football_puzzle/domain/entities/transaction.dart';
-import 'package:pocket_career_football_puzzle/services/progress_service.dart';
 import 'package:pocket_career_football_puzzle/game/football_puzzle_game.dart';
 import 'package:pocket_career_football_puzzle/game/level_generator.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/active_cosmetics.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 import 'package:pocket_career_football_puzzle/services/session_service.dart';
-import 'package:pocket_career_football_puzzle/domain/entities/achievement.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/achievement_popup.dart';
 
-/// Oyun ekranı — Move the Block bulmaca.
+/// Oyun ekranı — Move the Block bulmaca. — Move the Block bulmaca.
 class PlayScreen extends ConsumerStatefulWidget {
   final int season;
   final int level;
@@ -132,14 +129,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
     );
     final isNewRecord = storage.isNewRecord(levelKey, score);
 
-    // Başarım kontrolü: önce mevcut durumu kaydet
-    final progressBefore = ref.read(progressProvider);
-    final seenIds = storage.seenAchievements.toSet();
-    AchievementContext ctxBefore = _buildAchievementContext(progressBefore);
-    final unlockedBefore = Achievements.unlockedAchievements(ctxBefore)
-        .map((a) => a.id)
-        .toSet();
-
     final result = ref.read(sessionServiceProvider).endSession(
           score: score,
           movesUsed: _movesUsed,
@@ -158,14 +147,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
 
       storage.setHighScore(levelKey, score);
 
-      if (result.coinsEarned > 0) {
-        ref.read(coinBalanceProvider.notifier).addCoins(
-              result.coinsEarned,
-              'level_complete_${widget.level}',
-              TransactionSource.gameplay,
-            );
-      }
-
       ref.read(careerServiceProvider).onLevelCompleted(
             score: score,
             isGoal: true,
@@ -174,53 +155,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
     }
 
     ref.read(lastSessionResultProvider.notifier).state = result;
-
-    // Yeni başarım kontrolü
-    if (completed) {
-      final progressAfter = ref.read(progressProvider);
-      final ctxAfter = _buildAchievementContext(progressAfter);
-      final unlockedAfter = Achievements.unlockedAchievements(ctxAfter);
-      final newAchievements = unlockedAfter
-          .where((a) => !unlockedBefore.contains(a.id) && !seenIds.contains(a.id))
-          .toList();
-
-      if (newAchievements.isNotEmpty && mounted) {
-        // Seen olarak kaydet
-        for (final a in newAchievements) {
-          storage.addSeenAchievement(a.id);
-        }
-        // Popup göster, sonra navigate et
-        _showAchievementsThenNavigate(newAchievements, isNewRecord);
-        return;
-      }
-    }
-
-    context.go('/results/score');
-  }
-
-  AchievementContext _buildAchievementContext(ProgressData progress) {
-    final levelMatchPoints = <int, int>{};
-    for (final entry in progress.levels.entries) {
-      final levelNum = int.tryParse(entry.key);
-      if (levelNum != null) {
-        levelMatchPoints[levelNum] = entry.value.matchPoints;
-      }
-    }
-    return AchievementContext(
-      currentLevel: progress.currentLevel,
-      totalPoints: progress.totalPoints,
-      completedLevelCount:
-          progress.levels.values.where((l) => l.completed).length,
-      levelMatchPoints: levelMatchPoints,
-    );
-  }
-
-  Future<void> _showAchievementsThenNavigate(
-    List<Achievement> achievements,
-    bool isNewRecord,
-  ) async {
-    await AchievementPopup.showNewAchievements(context, achievements);
-    if (!mounted) return;
     context.go('/results/score');
   }
 
@@ -229,32 +163,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
     setState(() {
       _movesUsed = 0;
       _isGoal = false;
-    });
-  }
-
-  void _useExtraMove() {
-    final inventory = ref.read(inventoryServiceProvider);
-    final count = inventory.getPowerUpCount('extra_move');
-    if (count <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Ekstra hamle power-up\'ın yok! Mağazadan satın al.'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-      return;
-    }
-    inventory.usePowerUp('extra_move').then((success) {
-      if (success && mounted) {
-        _game.addExtraMove();
-        setState(() {});
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('+1 Ekstra hamle kullanıldı!'),
-            duration: Duration(seconds: 1),
-          ),
-        );
-      }
     });
   }
 
@@ -270,7 +178,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
           // Flame oyun alanı (gölgeli panel)
           Positioned.fill(
             top: 64,
-            bottom: 60,
             child: Container(
               decoration: BoxDecoration(
                 boxShadow: [
@@ -339,7 +246,8 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
                       ),
                       child: Text(
                         'Level ${widget.level}',
-                        style: const TextStyle(
+                        style: TextStyle(
+                          fontFamily: AppTheme.titleFontFamily,
                           color: AppColors.parchmentText,
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
@@ -364,6 +272,7 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
                         child: Text(
                           '$movesRemaining Hamle',
                           style: TextStyle(
+                            fontFamily: AppTheme.titleFontFamily,
                             color: isLowMoves ? AppColors.error : AppColors.parchmentText,
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
@@ -386,50 +295,6 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
                         imagePath: 'assets/buttons/pause.png',
                         onTap: () => context.push('/pause'),
                         child: const SizedBox.shrink(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // Alt bilgi çubuğu (asset tam kaplasın; home gibi Container dışta, SafeArea içte)
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                  image: AssetImage('assets/buttons/bottom_nav_bar.png'),
-                  fit: BoxFit.cover,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.3),
-                    offset: const Offset(0, -4),
-                    blurRadius: 8,
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 4,
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: SafeArea(
-                top: false,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Ekstra hamle power-up (sadece özellikler)
-                      _ExtraMoveButton(
-                        onUse: _isGoal ? null : _useExtraMove,
                       ),
                     ],
                   ),
@@ -546,39 +411,6 @@ class _MiniButtonState extends State<_MiniButton> {
       child: Opacity(
         opacity: widget.onTap != null ? 1.0 : 0.5,
         child: content,
-      ),
-    );
-  }
-}
-
-/// Power-up: Ekstra hamle butonu.
-class _ExtraMoveButton extends ConsumerWidget {
-  final VoidCallback? onUse;
-
-  const _ExtraMoveButton({this.onUse});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(inventoryServiceProvider).getPowerUpCount('extra_move');
-
-    return GestureDetector(
-      onTap: onUse,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        decoration: BoxDecoration(
-          color: count > 0
-              ? AppColors.success.withValues(alpha: 0.12)
-              : AppColors.surface.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: count > 0
-                ? AppColors.success.withValues(alpha: 0.3)
-                : Colors.transparent,
-          ),
-        ),
-        child: Icon(Icons.add_circle_outline,
-            size: 20,
-            color: count > 0 ? AppColors.success : AppColors.textHint),
       ),
     );
   }

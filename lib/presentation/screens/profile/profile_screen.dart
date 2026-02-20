@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
@@ -7,8 +8,8 @@ import 'package:pocket_career_football_puzzle/core/config/app_config.dart';
 import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/career.dart';
-import 'package:pocket_career_football_puzzle/domain/entities/achievement.dart';
 import 'package:pocket_career_football_puzzle/services/progress_service.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/app_bar_parchment.dart';
 
 /// Profil ekranı — overlay olarak açılır, Profil + Ayarlar tab'ları içerir.
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -57,87 +58,36 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
           ),
           Column(
             children: [
-              // Üst bar — appbar.png ile
-              Container(
-                constraints: const BoxConstraints(minHeight: 64),
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage('assets/buttons/appbar.png'),
-                    fit: BoxFit.cover,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.3),
-                      offset: const Offset(0, 4),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.2),
-                      offset: const Offset(0, 2),
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                    ),
-                  ],
-                ),
-                child: SafeArea(
-                  bottom: false,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Profil',
-                          style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const Spacer(),
-                        IconButton(
-                          icon: const Icon(Icons.close, color: Colors.white),
-                          onPressed: () {
-                            if (Navigator.canPop(context)) {
-                              Navigator.pop(context);
-                            } else {
-                              context.go('/game/main');
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              const AppBarParchment(title: 'Hesabım'),
               Expanded(
                 child: Column(
                   children: [
                     // Profil başlık kartı
                     if (career != null && team != null) ...[
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image: AssetImage('assets/buttons/paper.png'),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(0, 4),
-                              blurRadius: 8,
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                            padding: const EdgeInsets.fromLTRB(24, 20, 24, 20),
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                image: AssetImage('assets/buttons/tabela.png'),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 4),
+                                  blurRadius: 8,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Row(
-                children: [
-                  // Takım logosu (emoji)
-                  Container(
+                            child: Row(
+                              children: [
+                                // Takım logosu
+                                Container(
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
@@ -145,9 +95,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Color(
-                            team.primaryColor,
-                          ).withValues(alpha: 0.3),
+                          color: Color(team.primaryColor).withValues(alpha: 0.3),
                           blurRadius: 12,
                         ),
                       ],
@@ -165,7 +113,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                             child: Text(
                               team.logoEmoji,
                               style: TextStyle(
-                                fontFamily: AppTheme.fontFamily,
+                                fontFamily: AppTheme.bodyFontFamily,
                                 fontSize: 28,
                               ),
                             ),
@@ -173,114 +121,117 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                   ),
                   const SizedBox(width: 14),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Tıklanabilir isim düzenleme
-                        GestureDetector(
-                          onTap: () => _showEditNameDialog(context, ref, career),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                career.playerName,
-                                style: TextStyle(
-                                  fontFamily: AppTheme.fontFamily,
-                                  color: AppColors.parchmentText,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                        onTap: () => _showEditNameDialog(context, ref, career),
+                        child: Text(
+                          career.playerName,
+                          style: TextStyle(
+                            fontFamily: AppTheme.titleFontFamily,
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w900,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black.withValues(alpha: 0.6),
+                                offset: const Offset(1, 2),
+                                blurRadius: 3,
                               ),
-                              const SizedBox(width: 6),
-                              Icon(
-                                Icons.edit,
-                                size: 14,
-                                color: AppColors.textHint.withValues(alpha: 0.6),
+                              Shadow(
+                                color: Colors.black.withValues(alpha: 0.4),
+                                offset: const Offset(0, 1),
+                                blurRadius: 4,
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          'Seviye ${career.currentLevel}',
-                          style: const TextStyle(
-                            color: AppColors.textHint,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceLight.withValues(alpha: 0.9),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: AppColors.accent,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${progress.totalPoints}',
-                          style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
-                            color: AppColors.textPrimary,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+                            ),
+                          // Kalem — paper.png sağ üst köşesi, takım düzenleme
+                          Positioned(
+                            top: 4,
+                            right: 20,
+                            child: GestureDetector(
+                              onTap: () => _showTeamChangeDialog(context, ref, career),
+                              child: Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: AppColors.parchmentFill,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: AppColors.parchmentBorder,
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 16,
+                                  color: AppColors.parchmentText,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
 
                     const SizedBox(height: 12),
 
-                    // Tab Bar
+                    // Tab Bar — tabela.png arka plan (yüksek, ezilmesin), paper seçili tab'ta
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      constraints: const BoxConstraints(minHeight: 60),
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceLight.withValues(alpha: 0.95),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/buttons/tabela.png'),
+                          fit: BoxFit.fill,
+                        ),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: TabBar(
                         controller: _tabController,
+                        padding: const EdgeInsets.symmetric(vertical: 6),
                         indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorPadding: const EdgeInsets.all(6),
                         indicator: BoxDecoration(
-                          color: AppColors.primaryLight.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color:
-                                AppColors.primaryLight.withValues(alpha: 0.4),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/buttons/paper.png'),
+                            fit: BoxFit.fill,
                           ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        labelColor: AppColors.textPrimary,
-                        unselectedLabelColor: AppColors.textHint,
+                        labelColor: AppColors.parchmentText,
+                        unselectedLabelColor: Colors.white,
                         labelStyle: TextStyle(
-                          fontFamily: AppTheme.fontFamily,
+                          fontFamily: AppTheme.titleFontFamily,
                           fontWeight: FontWeight.w800,
                           fontSize: 14,
                         ),
-                        unselectedLabelStyle: const TextStyle(
+                        unselectedLabelStyle: TextStyle(
+                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: 14,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black.withValues(alpha: 0.6),
+                              offset: const Offset(1, 1),
+                              blurRadius: 2,
+                            ),
+                            Shadow(
+                              color: Colors.black.withValues(alpha: 0.4),
+                              offset: Offset.zero,
+                              blurRadius: 4,
+                            ),
+                          ],
                         ),
                         dividerColor: Colors.transparent,
                         tabs: const [
-                          Tab(text: 'Profil'),
-                          Tab(text: 'Ayarlar'),
+                          Tab(height: 52, text: 'Profil'),
+                          Tab(height: 52, text: 'Ayarlar'),
                         ],
                       ),
                     ),
@@ -312,55 +263,106 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
     final controller = TextEditingController(text: career.playerName);
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: AppColors.cardBackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'İsim Değiştir',
-          style: TextStyle(color: AppColors.textPrimary),
-        ),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          maxLength: 20,
-          style: const TextStyle(color: AppColors.textPrimary),
-          decoration: InputDecoration(
-            hintText: 'Oyuncu adı',
-            hintStyle: TextStyle(color: AppColors.textHint.withValues(alpha: 0.5)),
-            counterStyle: const TextStyle(color: AppColors.textHint),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.textHint.withValues(alpha: 0.3)),
+      barrierColor: Colors.black54,
+      builder: (ctx) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: AssetImage('assets/buttons/paper.png'),
+              fit: BoxFit.fill,
             ),
-            focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColors.primaryLight),
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text(
-              'İptal',
-              style: TextStyle(color: AppColors.textHint),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              final newName = controller.text.trim();
-              if (newName.isNotEmpty) {
-                ref.read(careersProvider.notifier).updatePlayerName(newName);
-              }
-              Navigator.pop(ctx);
-            },
-            child: const Text(
-              'Kaydet',
-              style: TextStyle(
-                color: AppColors.primaryLight,
-                fontWeight: FontWeight.bold,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.4),
+                offset: const Offset(0, 8),
+                blurRadius: 20,
               ),
-            ),
+            ],
           ),
-        ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'İsim Değiştir',
+                style: TextStyle(
+                  fontFamily: AppTheme.titleFontFamily,
+                  color: AppColors.parchmentText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: controller,
+                autofocus: true,
+                maxLength: 20,
+                style: TextStyle(
+                  fontFamily: AppTheme.titleFontFamily,
+                  color: AppColors.parchmentText,
+                  fontSize: 16,
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Oyuncu adı',
+                  hintStyle: TextStyle(
+                    fontFamily: AppTheme.titleFontFamily,
+                    color: AppColors.parchmentTextSecondary.withValues(alpha: 0.6),
+                  ),
+                  counterStyle: TextStyle(
+                    fontFamily: AppTheme.titleFontFamily,
+                    color: AppColors.parchmentTextSecondary,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.parchmentBorder.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.parchmentBorder),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx),
+                    child: Text(
+                      'İptal',
+                      style: TextStyle(
+                        fontFamily: AppTheme.titleFontFamily,
+                        color: AppColors.parchmentTextSecondary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  TextButton(
+                    onPressed: () {
+                      final newName = controller.text.trim();
+                      if (newName.isNotEmpty) {
+                        ref.read(careersProvider.notifier).updatePlayerName(newName);
+                      }
+                      Navigator.pop(ctx);
+                    },
+                    child: Text(
+                      'Kaydet',
+                      style: TextStyle(
+                        fontFamily: AppTheme.titleFontFamily,
+                        color: AppColors.fieldGreenDark,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -392,207 +394,158 @@ class _ProfileTab extends ConsumerWidget {
               color: AppColors.textHint.withValues(alpha: 0.3),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Aktif kariyer yok',
-              style: TextStyle(color: AppColors.textHint, fontSize: 14),
+              style: TextStyle(
+                fontFamily: AppTheme.titleFontFamily,
+                color: AppColors.textHint,
+                fontSize: 14,
+              ),
             ),
           ],
         ),
       );
     }
 
+    final completedLevels = progress.levels.values.where((lp) => lp.completed);
+    final matchesPlayed = completedLevels.length;
+    final wins =
+        completedLevels.where((lp) => lp.matchPoints == 3).length;
+    final draws =
+        completedLevels.where((lp) => lp.matchPoints == 1).length;
+    final losses =
+        completedLevels.where((lp) => lp.matchPoints == 0).length;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // Takım bilgisi + değiştir
-          GestureDetector(
-            onTap: () => _showTeamChangeDialog(context, ref),
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: AppColors.primaryLight.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: AppColors.primaryLight.withValues(alpha: 0.2),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (team != null) ...[
-                    if (team!.logoAssetPath != null)
-                      ClipOval(
-                        child: Image.asset(
-                          team!.logoAssetPath!,
-                          width: 28,
-                          height: 28,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    else
-                      Text(
-                        team!.logoEmoji,
-                        style: const TextStyle(fontSize: 22),
-                      ),
-                    const SizedBox(width: 8),
-                  ],
-                  Text(
-                    career!.teamName.isNotEmpty
-                        ? career!.teamName
-                        : (team?.name ?? ''),
-                    style: const TextStyle(
-                      color: AppColors.primaryLight,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  Icon(
-                    Icons.swap_horiz,
-                    size: 16,
-                    color: AppColors.primaryLight.withValues(alpha: 0.6),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 14),
-
-          // Kupa Sergim
+          // Takım bilgileri — maç, galibiyet, beraberlik, mağlubiyet, puan
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
             decoration: BoxDecoration(
-              color: AppColors.cardBackground,
-              borderRadius: BorderRadius.circular(16),
+              image: const DecorationImage(
+                image: AssetImage('assets/buttons/paper.png'),
+                fit: BoxFit.fill,
+              ),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6,
+                ),
+              ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.emoji_events,
-                      color: AppColors.gold,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    const Text(
-                      'Kupa Sergim',
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: Center(
+                    child: Text(
+                      'Takım Bilgileri',
                       style: TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      fontFamily: AppTheme.titleFontFamily,
+                      color: AppColors.parchmentText,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.5,
                     ),
-                  ],
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 14),
-                _buildTrophyShowcase(progress),
+                _ProfileStatRow(label: 'Oynanan Maç', value: '$matchesPlayed'),
+                const _ProfilePaperDivider(),
+                _ProfileStatRow(label: 'Galibiyet', value: '$wins'),
+                const _ProfilePaperDivider(),
+                _ProfileStatRow(label: 'Beraberlik', value: '$draws'),
+                const _ProfilePaperDivider(),
+                _ProfileStatRow(label: 'Mağlubiyet', value: '$losses'),
+                const _ProfilePaperDivider(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: _ProfileStatRow(
+                    label: 'Puan',
+                    value: '${progress.totalPoints}',
+                  ),
+                ),
               ],
             ),
           ),
 
           const SizedBox(height: 14),
 
-          // Başarım Rozetleri
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: AppColors.cardBackground,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.military_tech,
-                      color: AppColors.premium,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 6),
-                    const Expanded(
-                      child: Text(
-                        'Başarımlar',
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => context.push('/achievements'),
-                      child: const Text(
-                        'Tümü →',
-                        style: TextStyle(
-                          color: AppColors.primaryLight,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                _buildAchievementCompact(progress, career),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 14),
-
-          // Kariyeri sıfırla
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton.icon(
-              onPressed: () => _showResetDialog(context, ref),
-              icon: const Icon(Icons.restart_alt, size: 18),
-              label: const Text('Kariyeri Sıfırla'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.error,
-                side: const BorderSide(color: AppColors.error),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 12),
+          // Kariyeri sıfırla — Çıkış butonu ile aynı asset
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _RedAssetButton(
+                label: 'Kariyeri Sıfırla',
+                onTap: () => _showResetDialog(context, ref),
               ),
-            ),
+            ],
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 14),
 
-          // Kullanıcı kimliği
+          // Kullanıcı kimliği — Profil tabında
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
             decoration: BoxDecoration(
-              color: AppColors.surfaceLight.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(8),
+              image: const DecorationImage(
+                image: AssetImage('assets/buttons/paper.png'),
+                fit: BoxFit.fill,
+              ),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6,
+                ),
+              ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.fingerprint,
-                  size: 14,
-                  color: AppColors.textHint.withValues(alpha: 0.5),
+                  size: 16,
+                  color: AppColors.parchmentTextSecondary,
                 ),
-                const SizedBox(width: 6),
+                const SizedBox(width: 8),
                 Flexible(
                   child: Text(
                     'Kullanıcı ID: ${career!.id}',
                     style: TextStyle(
-                      color: AppColors.textHint.withValues(alpha: 0.5),
-                      fontSize: 10,
+                      fontFamily: AppTheme.titleFontFamily,
+                      color: AppColors.parchmentText,
+                      fontSize: 11,
                     ),
-                    textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(
+                      ClipboardData(text: career!.id),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Kopyalandı'),
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.copy,
+                    size: 18,
+                    color: AppColors.parchmentText,
                   ),
                 ),
               ],
@@ -603,284 +556,94 @@ class _ProfileTab extends ConsumerWidget {
     );
   }
 
-  Widget _buildTrophyShowcase(ProgressData progress) {
-    // Haftalık sıralama kupaları — ilk 3'e girince kazanılır
-    // Şimdilik SharedPreferences'tan okunan haftalık kupa sayıları
-    // TODO: Gerçek haftalık sıralama sistemi entegrasyonu
-    final goldCups = 0; // 1. sıra
-    final silverCups = 0; // 2. sıra
-    final bronzeCups = 0; // 3. sıra
-    final totalCups = goldCups + silverCups + bronzeCups;
-
-    if (totalCups == 0) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Column(
-            children: [
-              Icon(
-                Icons.emoji_events_outlined,
-                size: 40,
-                color: AppColors.textHint.withValues(alpha: 0.3),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Henüz kupa yok',
-                style: TextStyle(
-                  color: AppColors.textHint.withValues(alpha: 0.6),
-                  fontSize: 13,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Haftalık sıralamada ilk 3\'e gir!',
-                style: TextStyle(
-                  color: AppColors.textHint.withValues(alpha: 0.4),
-                  fontSize: 11,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _TrophyCup(
-          icon: Icons.emoji_events,
-          color: AppColors.gold,
-          label: '1.',
-          count: goldCups,
-        ),
-        _TrophyCup(
-          icon: Icons.emoji_events,
-          color: AppColors.silver,
-          label: '2.',
-          count: silverCups,
-        ),
-        _TrophyCup(
-          icon: Icons.emoji_events,
-          color: const Color(0xFFCD7F32),
-          label: '3.',
-          count: bronzeCups,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAchievementCompact(ProgressData progress, Career? career) {
-    final levelMatchPoints = <int, int>{};
-    for (final entry in progress.levels.entries) {
-      final levelNum = int.tryParse(entry.key);
-      if (levelNum != null) {
-        levelMatchPoints[levelNum] = entry.value.matchPoints;
-      }
-    }
-    final ctx = AchievementContext(
-      currentLevel: progress.currentLevel,
-      totalPoints: progress.totalPoints,
-      completedLevelCount:
-          progress.levels.values.where((l) => l.completed).length,
-      levelMatchPoints: levelMatchPoints,
-    );
-    final unlocked = Achievements.unlockedAchievements(ctx);
-    final total = Achievements.all.length;
-
-    if (unlocked.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(
-          'Henüz başarım kazanılmadı',
-          style: TextStyle(
-            color: AppColors.textHint.withValues(alpha: 0.5),
-            fontSize: 12,
-          ),
-        ),
-      );
-    }
-
-    // Son kazanılan 4 başarımı göster
-    final display = unlocked.length > 4
-        ? unlocked.sublist(unlocked.length - 4)
-        : unlocked;
-
-    return Column(
-      children: [
-        // Kompakt ilerleme
-        Row(
-          children: [
-            Text(
-              '${unlocked.length}/$total',
-              style: const TextStyle(
-                color: AppColors.accent,
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: LinearProgressIndicator(
-                  value: total > 0 ? unlocked.length / total : 0,
-                  minHeight: 5,
-                  backgroundColor: AppColors.surfaceLight,
-                  valueColor:
-                      const AlwaysStoppedAnimation<Color>(AppColors.accent),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        // Son başarımlar satırı
-        Row(
-          children: display.map((a) {
-            return Expanded(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceLight.withValues(alpha: 0.5),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  children: [
-                    Text(a.emoji, style: const TextStyle(fontSize: 18)),
-                    const SizedBox(height: 2),
-                    Text(
-                      a.title,
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 8,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
   void _showResetDialog(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: AppColors.cardBackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'Kariyeri Sıfırla',
-          style: TextStyle(color: AppColors.textPrimary),
-        ),
-        content: const Text(
-          'Tüm kariyer verisi silinecek. Bu işlem geri alınamaz!',
-          style: TextStyle(color: AppColors.textSecondary),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text(
-              'İptal',
-              style: TextStyle(color: AppColors.textHint),
+      barrierColor: Colors.black54,
+      builder: (ctx) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: AssetImage('assets/buttons/paper.png'),
+              fit: BoxFit.fill,
             ),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(ctx);
-              // Tüm verileri sil — sıfırdan hesap açmış gibi
-              final localStorage = ref.read(localStorageProvider);
-              await localStorage.clearAll();
-              // Tüm provider'ları yenile
-              ref.invalidate(careersProvider);
-              ref.invalidate(activeCareerProvider);
-              ref.invalidate(progressProvider);
-              ref.invalidate(livesProvider);
-              ref.invalidate(coinBalanceProvider);
-              ref.invalidate(localLeaderboardProvider);
-              ref.invalidate(activeCosmeticsProvider);
-              ref.invalidate(settingsProvider);
-              if (context.mounted) {
-                context.go('/career/setup');
-              }
-            },
-            child: const Text(
-              'Sıfırla',
-              style: TextStyle(
-                color: AppColors.error,
-                fontWeight: FontWeight.bold,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.4),
+                offset: const Offset(0, 8),
+                blurRadius: 20,
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  void _showTeamChangeDialog(BuildContext context, WidgetRef ref) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: AppColors.cardBackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          'Takım Değiştir',
-          style: TextStyle(color: AppColors.textPrimary),
-        ),
-        content: SizedBox(
-          width: double.maxFinite,
-          child: GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-            ),
-            itemCount: AppConfig.availableTeams.length,
-            itemBuilder: (_, i) {
-              final t = AppConfig.availableTeams[i];
-              final isSelected = t.id == career?.teamId;
-              return GestureDetector(
-                onTap: () {
-                  ref.read(careersProvider.notifier).updateTeamId(t.id);
-                  Navigator.pop(ctx);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? Color(t.primaryColor).withValues(alpha: 0.2)
-                        : AppColors.surfaceLight,
-                    borderRadius: BorderRadius.circular(10),
-                    border: isSelected
-                        ? Border.all(color: Color(t.primaryColor), width: 2)
-                        : null,
-                  ),
-                  child: Center(
-                    child: t.logoAssetPath != null
-                        ? ClipOval(
-                            child: Image.asset(
-                              t.logoAssetPath!,
-                              width: 48,
-                              height: 48,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : Text(
-                            t.logoEmoji,
-                            style: const TextStyle(fontSize: 24),
-                          ),
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Kariyeri Sıfırla',
+                style: TextStyle(
+                  fontFamily: AppTheme.titleFontFamily,
+                  color: AppColors.parchmentText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
                 ),
-              );
-            },
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Tüm kariyer verisi silinecek. Bu işlem geri alınamaz!',
+                style: TextStyle(
+                  fontFamily: AppTheme.titleFontFamily,
+                  color: AppColors.parchmentTextSecondary,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx),
+                    child: Text(
+                      'İptal',
+                      style: TextStyle(
+                        fontFamily: AppTheme.titleFontFamily,
+                        color: AppColors.parchmentTextSecondary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.pop(ctx);
+                      final localStorage = ref.read(localStorageProvider);
+                      await localStorage.clearAll();
+                      ref.invalidate(careersProvider);
+                      ref.invalidate(activeCareerProvider);
+                      ref.invalidate(progressProvider);
+                      ref.invalidate(livesProvider);
+                      ref.invalidate(coinBalanceProvider);
+                      ref.invalidate(activeCosmeticsProvider);
+                      ref.invalidate(settingsProvider);
+                      if (context.mounted) {
+                        context.go('/career/setup');
+                      }
+                    },
+                    child: Text(
+                      'Sıfırla',
+                      style: TextStyle(
+                        fontFamily: AppTheme.titleFontFamily,
+                        color: AppColors.error,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -888,64 +651,171 @@ class _ProfileTab extends ConsumerWidget {
   }
 }
 
-class _TrophyCup extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  final String label;
-  final int count;
+void _showTeamChangeDialog(
+  BuildContext context,
+  WidgetRef ref,
+  Career? career,
+) {
+  showDialog(
+    context: context,
+    barrierColor: Colors.black54,
+    builder: (ctx) => Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/buttons/paper.png'),
+            fit: BoxFit.fill,
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.4),
+              offset: const Offset(0, 8),
+              blurRadius: 20,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Text(
+                'Takım Değiştir',
+                style: TextStyle(
+                  fontFamily: AppTheme.titleFontFamily,
+                  color: AppColors.parchmentText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.maxFinite,
+              child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: AppConfig.availableTeams.length,
+                itemBuilder: (_, i) {
+                  final t = AppConfig.availableTeams[i];
+                  final isSelected = t.id == career?.teamId;
+                  return GestureDetector(
+                    onTap: () {
+                      ref.read(careersProvider.notifier).updateTeamId(t.id);
+                      Navigator.pop(ctx);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isSelected
+                            ? Color(t.primaryColor).withValues(alpha: 0.2)
+                            : AppColors.parchmentFillDark,
+                        border: Border.all(
+                          color: isSelected
+                              ? Color(t.primaryColor)
+                              : AppColors.parchmentBorder.withValues(alpha: 0.5),
+                          width: isSelected ? 2 : 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: t.logoAssetPath != null
+                            ? ClipOval(
+                                child: Image.asset(
+                                  t.logoAssetPath!,
+                                  width: 48,
+                                  height: 48,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : Text(
+                                t.logoEmoji,
+                                style: TextStyle(
+                                  fontFamily: AppTheme.titleFontFamily,
+                                  fontSize: 24,
+                                ),
+                              ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
-  const _TrophyCup({
-    required this.icon,
-    required this.color,
+/// Ana sayfadaki level zorluk/puan divider ile aynı stilde.
+class _ProfilePaperDivider extends StatelessWidget {
+  const _ProfilePaperDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1,
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.transparent,
+            AppColors.parchmentBorder.withValues(alpha: 0.5),
+            Colors.transparent,
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+    );
+  }
+}
+
+/// Profil sekmesinde takım istatistik satırı.
+class _ProfileStatRow extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _ProfileStatRow({
     required this.label,
-    required this.count,
+    required this.value,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.12),
-                shape: BoxShape.circle,
-                border: Border.all(color: color.withValues(alpha: 0.3)),
-              ),
-              child: Icon(icon, color: color, size: 30),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontFamily: AppTheme.titleFontFamily,
+              color: AppColors.parchmentTextSecondary,
+              fontSize: 14,
             ),
-            if (count > 0)
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  '$count',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        Text(
-          '$label s\u0131ra',
-          style: TextStyle(
-            color: color,
-            fontSize: 11,
-            fontWeight: FontWeight.w600,
           ),
-        ),
-      ],
+          Text(
+            value,
+            style: TextStyle(
+              fontFamily: AppTheme.titleFontFamily,
+              color: AppColors.parchmentText,
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -953,13 +823,55 @@ class _TrophyCup extends StatelessWidget {
 // ══════════════════════════════════════════════════════════════
 // Ayarlar Tab
 // ══════════════════════════════════════════════════════════════
+/// Çıkış butonu ile aynı asset (red_button.png).
+class _RedAssetButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const _RedAssetButton({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: IntrinsicWidth(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+            height: 52,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            image: const DecorationImage(
+              image: AssetImage('assets/buttons/red_button.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: AppTheme.titleFontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+              color: Colors.white,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+        ),
+      ),
+    );
+  }
+}
+
 class _SettingsTab extends ConsumerWidget {
   const _SettingsTab();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    final isPremium = ref.watch(entitlementProvider);
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -967,6 +879,7 @@ class _SettingsTab extends ConsumerWidget {
         _SettingsSection(
           title: context.tr('settings_language'),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _LanguageChip(
                 label: 'Türkçe',
@@ -996,6 +909,7 @@ class _SettingsTab extends ConsumerWidget {
                 onChanged: (v) =>
                     ref.read(settingsProvider.notifier).toggleMusic(v),
               ),
+              const _ProfilePaperDivider(),
               _ToggleRow(
                 icon: Icons.volume_up,
                 label: context.tr('settings_sound'),
@@ -1003,6 +917,7 @@ class _SettingsTab extends ConsumerWidget {
                 onChanged: (v) =>
                     ref.read(settingsProvider.notifier).toggleSound(v),
               ),
+              const _ProfilePaperDivider(),
               _ToggleRow(
                 icon: Icons.vibration,
                 label: context.tr('settings_haptics'),
@@ -1010,6 +925,7 @@ class _SettingsTab extends ConsumerWidget {
                 onChanged: (v) =>
                     ref.read(settingsProvider.notifier).toggleHaptics(v),
               ),
+              const _ProfilePaperDivider(),
               _ToggleRow(
                 icon: Icons.notifications,
                 label: context.tr('settings_notifications'),
@@ -1022,57 +938,17 @@ class _SettingsTab extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         _SettingsSection(
-          title: 'Satın Alma',
-          child: Column(
-            children: [
-              if (!isPremium)
-                _ActionRow(
-                  icon: Icons.block,
-                  label: context.tr('settings_remove_ads'),
-                  color: AppColors.premium,
-                  onTap: () => context.go('/paywall/remove-ads'),
-                ),
-              _ActionRow(
-                icon: Icons.monetization_on_outlined,
-                label: 'Coin Satın Al',
-                color: AppColors.accent,
-                onTap: () => context.push('/shop'),
-              ),
-              _ActionRow(
-                icon: Icons.restore,
-                label: context.tr('settings_restore_purchases'),
-                onTap: () async {
-                  final purchases = ref.read(purchasesServiceProvider);
-                  final success = await purchases.restorePurchases();
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          success
-                              ? 'Satın alımlar geri yüklendi'
-                              : 'Geri yükleme başarısız',
-                        ),
-                      ),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 16),
-        _SettingsSection(
           title: 'Destek & Yasal',
           child: Column(
             children: [
               _ActionRow(
                 icon: Icons.star_rate_outlined,
                 label: 'Bizi Değerlendir',
-                color: AppColors.accent,
                 onTap: () {
                   // TODO: Store review açılacak
                 },
               ),
+              const _ProfilePaperDivider(),
               _ActionRow(
                 icon: Icons.help_outline,
                 label: 'Yardım',
@@ -1080,6 +956,7 @@ class _SettingsTab extends ConsumerWidget {
                   // TODO: Yardım sayfası
                 },
               ),
+              const _ProfilePaperDivider(),
               _ActionRow(
                 icon: Icons.privacy_tip,
                 label: 'Gizlilik Politikası',
@@ -1087,6 +964,7 @@ class _SettingsTab extends ConsumerWidget {
                   // TODO: URL launcher ile açılacak
                 },
               ),
+              const _ProfilePaperDivider(),
               _ActionRow(
                 icon: Icons.description,
                 label: 'Kullanım Koşulları',
@@ -1094,6 +972,7 @@ class _SettingsTab extends ConsumerWidget {
                   // TODO: URL launcher ile açılacak
                 },
               ),
+              const _ProfilePaperDivider(),
               _ActionRow(
                 icon: Icons.language,
                 label: 'Web Sitesi',
@@ -1104,11 +983,33 @@ class _SettingsTab extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(height: 24),
-        Center(
-          child: Text(
-            '${context.tr('settings_version')}: ${AppConfig.appVersion}',
-            style: const TextStyle(color: AppColors.textHint, fontSize: 12),
+        const SizedBox(height: 16),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: AssetImage('assets/buttons/paper.png'),
+              fit: BoxFit.fill,
+            ),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, 2),
+                blurRadius: 6,
+              ),
+            ],
+          ),
+          child: Center(
+            child: Text(
+              '${context.tr('settings_version')}: ${AppConfig.appVersion}',
+              style: TextStyle(
+                fontFamily: AppTheme.titleFontFamily,
+                color: AppColors.parchmentText,
+                fontSize: 12,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 16),
@@ -1130,25 +1031,46 @@ class _SettingsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            color: AppColors.textHint,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1,
-          ),
-        ),
-        const SizedBox(height: 8),
         Container(
-          padding: const EdgeInsets.all(4),
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
           decoration: BoxDecoration(
-            color: AppColors.cardBackground,
+            image: const DecorationImage(
+              image: AssetImage('assets/buttons/paper.png'),
+              fit: BoxFit.fill,
+            ),
             borderRadius: BorderRadius.circular(12),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, 2),
+                blurRadius: 6,
+              ),
+            ],
           ),
-          child: child,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: AppTheme.titleFontFamily,
+                      color: AppColors.parchmentText,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ),
+              ),
+              child,
+            ],
+          ),
         ),
       ],
     );
@@ -1174,18 +1096,24 @@ class _ToggleRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Row(
         children: [
-          Icon(icon, color: AppColors.textSecondary, size: 20),
+          Icon(icon, color: AppColors.parchmentTextSecondary, size: 20),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               label,
-              style: const TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(
+                fontFamily: AppTheme.titleFontFamily,
+                color: AppColors.parchmentText,
+              ),
             ),
           ),
           Switch(
             value: value,
             onChanged: onChanged,
-            activeTrackColor: AppColors.primaryLight,
+            activeTrackColor: AppColors.fieldGreenDark,
+            inactiveTrackColor: AppColors.parchmentFillDark,
+            activeThumbColor: AppColors.ball,
+            inactiveThumbColor: AppColors.parchmentText,
           ),
         ],
       ),
@@ -1196,27 +1124,28 @@ class _ToggleRow extends StatelessWidget {
 class _ActionRow extends StatelessWidget {
   final IconData icon;
   final String label;
-  final Color? color;
   final VoidCallback onTap;
 
   const _ActionRow({
     required this.icon,
     required this.label,
-    this.color,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: color ?? AppColors.textSecondary, size: 20),
+      leading: Icon(icon, color: AppColors.parchmentTextSecondary, size: 20),
       title: Text(
         label,
-        style: TextStyle(color: color ?? AppColors.textPrimary),
+        style: TextStyle(
+          fontFamily: AppTheme.titleFontFamily,
+          color: AppColors.parchmentText,
+        ),
       ),
       trailing: Icon(
         Icons.chevron_right,
-        color: AppColors.textHint.withValues(alpha: 0.5),
+        color: AppColors.parchmentTextSecondary,
         size: 20,
       ),
       onTap: onTap,
@@ -1244,17 +1173,22 @@ class _LanguageChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           color: isSelected
-              ? AppColors.primaryLight.withValues(alpha: 0.2)
+              ? AppColors.parchmentFillDark
               : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: isSelected ? AppColors.primaryLight : AppColors.surfaceLight,
+            color: isSelected
+                ? AppColors.parchmentBorder
+                : AppColors.parchmentBorder.withValues(alpha: 0.5),
           ),
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: isSelected ? AppColors.primaryLight : AppColors.textHint,
+            fontFamily: AppTheme.titleFontFamily,
+            color: isSelected
+                ? AppColors.parchmentText
+                : AppColors.parchmentTextSecondary,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),

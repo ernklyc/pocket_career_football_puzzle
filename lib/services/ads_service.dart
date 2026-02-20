@@ -1,4 +1,3 @@
-import 'package:pocket_career_football_puzzle/core/config/ad_config.dart';
 import 'package:pocket_career_football_puzzle/core/config/economy_config.dart';
 import 'package:pocket_career_football_puzzle/core/logging/logger.dart';
 import 'package:pocket_career_football_puzzle/data/datasources/local/local_storage.dart';
@@ -8,16 +7,14 @@ enum AdState { idle, loading, ready, showing, completed, failed, cancelled }
 
 /// Reklam servisi (AdMob).
 /// SDK entegrasyonu production'da yapılacak, şimdilik stub.
+/// Sadece ödüllü reklam desteklenir; banner kaldırıldı.
 class AdsService {
   final LocalStorage _storage;
   bool _initialized = false;
-  bool _premiumActive = false;
-  AdState _bannerState = AdState.idle;
   AdState _rewardedState = AdState.idle;
 
   AdsService(this._storage);
 
-  AdState get bannerState => _bannerState;
   AdState get rewardedState => _rewardedState;
 
   /// SDK'yı başlat.
@@ -31,29 +28,9 @@ class AdsService {
     }
   }
 
-  /// Premium durumu güncelle.
+  /// Premium durumu güncelle (no-op, banner kaldırıldı).
   void setPremiumActive(bool active) {
-    _premiumActive = active;
-    if (active) {
-      _bannerState = AdState.idle;
-    }
-  }
-
-  /// Banner reklam gösterilmeli mi?
-  bool shouldShowBanner(String currentRoute) {
-    if (_premiumActive) return false;
-    if (!_initialized) return false;
-    return AdConfig.bannerAllowedRoutes.contains(currentRoute);
-  }
-
-  /// Banner yükle.
-  Future<void> loadBanner() async {
-    if (_premiumActive || !_initialized) return;
-    _bannerState = AdState.loading;
-    // TODO: Gerçek banner yükleme
-    await Future.delayed(const Duration(milliseconds: 500));
-    _bannerState = AdState.ready;
-    AppLogger.sdk('AdMob', 'Banner loaded (stub)');
+    // Banner kaldırıldı, tutuluyor paywall uyumluluğu için.
   }
 
   /// Ödüllü reklam yükle.
@@ -107,7 +84,6 @@ class AdsService {
   }
 
   void dispose() {
-    _bannerState = AdState.idle;
     _rewardedState = AdState.idle;
   }
 }

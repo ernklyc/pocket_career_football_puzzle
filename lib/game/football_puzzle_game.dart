@@ -36,12 +36,14 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
   late double _cellSize;
   late double _gridOffsetX;
   late double _gridOffsetY;
+
   /// Mantıksal içerik merkezi (dönüşüm için).
   late double _logicalCenterX;
   late double _logicalCenterY;
 
   // ── Drag & Selection ──
   Vector2? _dragStartPos;
+  Vector2? _lastDragPos;
   String? _selectedBlockId;
 
   // ── Animasyon ──
@@ -69,8 +71,10 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
   // ── Tahta blok görselleri ──
   /// 1x2 / 2x1 bloklar için: tabela.png
   ui.Image? _boardImage;
+
   /// 1x1 bloklar için: 1x1.png
   ui.Image? _board1x1Image;
+
   /// 1x3 / 3x1 bloklar için: 1x3.png
   ui.Image? _board1x3Image;
 
@@ -195,15 +199,28 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     final cx = size.x / 2;
     final cy = size.y / 2;
     // rotate(-90) inverse = rotate(90): (x,y) -> (-y, x)
-    return Offset(cy - screen.dy + _logicalCenterX, screen.dx - cx + _logicalCenterY);
+    return Offset(
+      cy - screen.dy + _logicalCenterX,
+      screen.dx - cx + _logicalCenterY,
+    );
   }
 
-  /// Ekrandaki swipe velocity'den mantıksal yön (ekran yukarı = sağa = gol).
+  /// Ekrandaki swipe velocity'den mantıksal yön (ekran -90° döndürülmüş).
   Direction _screenVelocityToDirection(double vx, double vy) {
     if (vx.abs() > vy.abs()) {
       return vx > 0 ? Direction.down : Direction.up;
     } else {
       return vy > 0 ? Direction.left : Direction.right;
+    }
+  }
+
+  /// Ekran delta'sından swipe yönü (düşük hızda fallback).
+  Direction? _screenDeltaToDirection(double dx, double dy) {
+    if (dx.abs() < 25 && dy.abs() < 25) return null;
+    if (dx.abs() > dy.abs()) {
+      return dx > 0 ? Direction.down : Direction.up;
+    } else {
+      return dy > 0 ? Direction.left : Direction.right;
     }
   }
 
@@ -250,7 +267,9 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     canvas.rotate(-pi / 2);
     canvas.translate(-_logicalCenterX, -_logicalCenterY);
     _drawField(canvas);
-    _drawExit(canvas); // fallback çizimi; gerçek kale görseli ekranda ayrı çizilir
+    _drawExit(
+      canvas,
+    ); // fallback çizimi; gerçek kale görseli ekranda ayrı çizilir
     _drawGridCells(canvas);
     _drawBlocks(canvas);
     if (_showGoalEffect) {
@@ -399,11 +418,7 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
       h = boxH;
       w = boxH * aspect;
     }
-    final dst = Rect.fromCenter(
-      center: boxRect.center,
-      width: w,
-      height: h,
-    );
+    final dst = Rect.fromCenter(center: boxRect.center, width: w, height: h);
     final src = Rect.fromLTWH(0, 0, iw, ih);
     canvas.drawImageRect(_goalImage!, src, dst, Paint());
   }
@@ -432,7 +447,10 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
           );
           // Çim dokusunu 90° döndürerek çiz
           canvas.save();
-          canvas.translate(cellRect.left + _cellSize / 2, cellRect.top + _cellSize / 2);
+          canvas.translate(
+            cellRect.left + _cellSize / 2,
+            cellRect.top + _cellSize / 2,
+          );
           canvas.rotate(pi / 2);
           canvas.translate(-_cellSize / 2, -_cellSize / 2);
           canvas.drawImageRect(
@@ -586,7 +604,8 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     //  - 1x2 veya 2x1 → tabela.png
     //  - 1x1         → 1x1.png
     //  - 1x3 veya 3x1 → 1x3.png
-    final isBoardBlock = (block.width == 2 && block.height == 1) ||
+    final isBoardBlock =
+        (block.width == 2 && block.height == 1) ||
         (block.width == 1 && block.height == 2);
     final isBoard1x1 = block.width == 1 && block.height == 1;
 
@@ -777,18 +796,29 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     if (!_state.canMove || _animProgress < 1.0) return;
 
     _dragStartPos = event.canvasPosition;
+    _lastDragPos = event.canvasPosition;
 
     // Ekran dokunma noktasını mantıksal koordinata çevir (döndürülmüş alan için)
-    final touchPos = _screenToLogical(Offset(event.canvasPosition.x, event.canvasPosition.y));
+    final touchPos = _screenToLogical(
+      Offset(event.canvasPosition.x, event.canvasPosition.y),
+    );
     _selectedBlockId = null;
 
-    for (final block in _state.blocks) {
-      // Dokunma alanını biraz genişlet (kullanıcı deneyimi)
-      if (_blockRect(block).inflate(4).contains(touchPos)) {
+    // Üstte çizilen bloklar önce kontrol edilsin (top en üstte) — ters sıra
+    final blocksReversed = _state.blocks.toList().reversed;
+    final touchExpand = (_cellSize * 0.15).clamp(12.0, 24.0);
+    for (final block in blocksReversed) {
+      if (_blockRect(block).inflate(touchExpand).contains(touchPos)) {
         _selectedBlockId = block.id;
         break;
       }
     }
+  }
+
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    super.onDragUpdate(event);
+    _lastDragPos = event.canvasEndPosition;
   }
 
   @override
@@ -798,31 +828,40 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     if (_selectedBlockId == null || _dragStartPos == null) {
       _selectedBlockId = null;
       _dragStartPos = null;
+      _lastDragPos = null;
       return;
     }
 
     if (!_state.canMove || _animProgress < 1.0) {
       _selectedBlockId = null;
       _dragStartPos = null;
+      _lastDragPos = null;
       return;
     }
 
-    // Swipe yönünü ekran velocity'den mantıksal yöne çevir (ekran yukarı = gol = sağ)
     final vx = event.velocity.x;
     final vy = event.velocity.y;
+    Direction? dir;
 
-    // Minimum swipe hızı
-    if (vx.abs() < 80 && vy.abs() < 80) {
-      _selectedBlockId = null;
-      _dragStartPos = null;
-      return;
+    if (vx.abs() >= 45 || vy.abs() >= 45) {
+      dir = _screenVelocityToDirection(vx, vy);
+    } else if (_lastDragPos != null) {
+      final dx = _lastDragPos!.x - _dragStartPos!.x;
+      final dy = _lastDragPos!.y - _dragStartPos!.y;
+      dir = _screenDeltaToDirection(dx, dy);
     }
 
-    final dir = _screenVelocityToDirection(vx, vy);
+    if (dir == null) {
+      _selectedBlockId = null;
+      _dragStartPos = null;
+      _lastDragPos = null;
+      return;
+    }
 
     _executeMove(_selectedBlockId!, dir);
     _selectedBlockId = null;
     _dragStartPos = null;
+    _lastDragPos = null;
   }
 
   // ═══════════════════════════════════════════════════════════
@@ -916,6 +955,7 @@ class FootballPuzzleGame extends FlameGame with DragCallbacks {
     _goalBallPos = null;
     _selectedBlockId = null;
     _dragStartPos = null;
+    _lastDragPos = null;
   }
 
   /// Ekstra hamle ekle (power-up).

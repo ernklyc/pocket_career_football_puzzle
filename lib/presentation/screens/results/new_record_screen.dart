@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocket_career_football_puzzle/core/config/progression_schema.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/core/theme/layout_constants.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/game_button.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/shadowed_asset.dart';
 
 /// Yeni rekor ekranı — GameScreen/HomePage tasarım dili: background, paper kart, trophy asset, gölgeler.
@@ -16,8 +16,8 @@ class NewRecordScreen extends ConsumerWidget {
   static const _cardShadow = [
     BoxShadow(
       color: Colors.black26,
-      offset: Offset(0, 4),
-      blurRadius: 8,
+      offset: Offset(0, 2),
+      blurRadius: 6,
       spreadRadius: 0,
     ),
   ];
@@ -53,7 +53,7 @@ class NewRecordScreen extends ConsumerWidget {
                   // Paper kart
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+                    padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
                         image: AssetImage('assets/buttons/paper.png'),
@@ -81,7 +81,7 @@ class NewRecordScreen extends ConsumerWidget {
                         Text(
                           context.tr('results_new_record'),
                           style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
+                            fontFamily: AppTheme.titleFontFamily,
                             color: AppColors.gold,
                             fontSize: 28,
                             fontWeight: FontWeight.w900,
@@ -99,7 +99,7 @@ class NewRecordScreen extends ConsumerWidget {
                         Text(
                           context.tr('results_congratulations'),
                           style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
+                            fontFamily: AppTheme.titleFontFamily,
                             color: AppColors.parchmentTextSecondary,
                             fontSize: 14,
                           ),
@@ -121,7 +121,7 @@ class NewRecordScreen extends ConsumerWidget {
                               Text(
                                 context.tr('results_score'),
                                 style: TextStyle(
-                                  fontFamily: AppTheme.fontFamily,
+                                  fontFamily: AppTheme.titleFontFamily,
                                   color: AppColors.parchmentTextSecondary,
                                   fontSize: 12,
                                 ),
@@ -130,7 +130,7 @@ class NewRecordScreen extends ConsumerWidget {
                               Text(
                                 '${result.score}',
                                 style: TextStyle(
-                                  fontFamily: AppTheme.fontFamily,
+                                  fontFamily: AppTheme.titleFontFamily,
                                   color: AppColors.gold,
                                   fontSize: 40,
                                   fontWeight: FontWeight.w900,
@@ -146,66 +146,39 @@ class NewRecordScreen extends ConsumerWidget {
                             ],
                           ),
                         ),
-                        if (result.coinsEarned > 0) ...[
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.monetization_on, color: AppColors.coin, size: 22),
-                              const SizedBox(width: 6),
-                              Text(
-                                '+${result.coinsEarned}',
-                                style: TextStyle(
-                                  fontFamily: AppTheme.fontFamily,
-                                  color: AppColors.coin,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
                       ],
                     ),
                   ),
 
                   const Spacer(),
 
-                  GameButton(
-                    text: context.tr('results_next'),
-                    onPressed: () {
-                      const maxLevel = 100;
+                  _AssetTextButton(
+                    imagePath: 'assets/buttons/play_button_v2.png',
+                    label: context.tr('results_next'),
+                    textColor: AppColors.fieldGreenDark,
+                    onTap: () {
+                      final maxLevel = ProgressionSchema.levelCount;
                       if (result.levelNumber >= maxLevel) {
                         context.go('/game/main');
                         return;
                       }
                       final nextLevel = result.levelNumber + 1;
-                      if (result.levelNumber % 5 == 0) {
-                        ref.read(nextLevelAfterPaywallProvider.notifier).state = nextLevel;
-                        context.go('/paywall/coins');
-                      } else {
-                        context.go('/play', extra: {'season': 1, 'level': nextLevel});
-                      }
+                      context.go('/play', extra: {'season': 1, 'level': nextLevel});
                     },
-                    width: double.infinity,
-                    backgroundColor: AppColors.gold,
-                    textColor: AppColors.background,
-                    icon: Icons.arrow_forward,
                   ),
                   const SizedBox(height: 12),
-                  GameButton(
-                    text: 'Ana Ekrana Dön',
-                    onPressed: () => context.go('/game/main'),
-                    width: double.infinity,
-                    isOutlined: true,
-                    icon: Icons.home_outlined,
+                  _AssetTextButton(
+                    imagePath: 'assets/buttons/red_button.png',
+                    label: 'Ana Ekrana Dön',
+                    textColor: Colors.white,
+                    onTap: () => context.go('/game/main'),
                   ),
                   const SizedBox(height: 12),
-                  GameButton(
-                    text: context.tr('results_menu'),
-                    onPressed: () => context.go('/game/main'),
-                    width: double.infinity,
-                    isOutlined: true,
+                  _AssetTextButton(
+                    imagePath: 'assets/buttons/red_button.png',
+                    label: context.tr('results_menu'),
+                    textColor: Colors.white,
+                    onTap: () => context.go('/game/main'),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -213,6 +186,58 @@ class NewRecordScreen extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Asset arka planlı buton (Profil/Ayarlar stili).
+class _AssetTextButton extends StatelessWidget {
+  final String imagePath;
+  final String label;
+  final Color textColor;
+  final VoidCallback onTap;
+
+  const _AssetTextButton({
+    required this.imagePath,
+    required this.label,
+    required this.textColor,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          width: double.infinity,
+          height: 52,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.fill,
+            ),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: AppTheme.titleFontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.w800,
+              color: textColor,
+              letterSpacing: 0.5,
+              shadows: const [
+                Shadow(color: Colors.white, offset: Offset(1, 1), blurRadius: 0),
+                Shadow(color: Colors.white70, offset: Offset(0, 1), blurRadius: 0),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

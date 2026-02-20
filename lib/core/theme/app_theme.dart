@@ -5,14 +5,19 @@ import 'app_colors.dart';
 class AppTheme {
   AppTheme._();
 
-  /// Tüm uygulama metinlerinde kullanılan font.
-  static const String fontFamily = 'Grobold';
-  static const String _fontFamily = fontFamily;
+  /// Başlıklar için font (LuckiestGuy).
+  static const String titleFontFamily = 'LuckiestGuy';
+
+  /// Alt yazılar / gövde metni için font (null = platform varsayılanı).
+  static const String? bodyFontFamily = null;
+
+  /// Geriye uyumluluk: başlık fontu.
+  static const String fontFamily = titleFontFamily;
 
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: _fontFamily,
+      fontFamily: bodyFontFamily,
       brightness: Brightness.dark,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
@@ -30,10 +35,12 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: titleFontFamily,
           color: AppColors.textPrimary,
-          fontSize: 20,
+          fontSize: 24,
           fontWeight: FontWeight.bold,
+          letterSpacing: 0.6,
+          height: 1.25,
         ),
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
@@ -52,8 +59,8 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(
-            fontFamily: _fontFamily,
+          textStyle: TextStyle(
+            fontFamily: bodyFontFamily,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -67,8 +74,8 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(
-            fontFamily: _fontFamily,
+          textStyle: TextStyle(
+            fontFamily: bodyFontFamily,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -77,8 +84,8 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: AppColors.accent,
-          textStyle: const TextStyle(
-            fontFamily: _fontFamily,
+          textStyle: TextStyle(
+            fontFamily: bodyFontFamily,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -86,52 +93,62 @@ class AppTheme {
       ),
       textTheme: TextTheme(
         headlineLarge: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: titleFontFamily,
           color: AppColors.textPrimary,
-          fontSize: 32,
+          fontSize: 36,
           fontWeight: FontWeight.bold,
+          letterSpacing: 1.0,
+          height: 1.2,
         ),
         headlineMedium: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: titleFontFamily,
+          color: AppColors.textPrimary,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.8,
+          height: 1.25,
+        ),
+        headlineSmall: TextStyle(
+          fontFamily: titleFontFamily,
           color: AppColors.textPrimary,
           fontSize: 24,
           fontWeight: FontWeight.bold,
-        ),
-        headlineSmall: TextStyle(
-          fontFamily: _fontFamily,
-          color: AppColors.textPrimary,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+          letterSpacing: 0.6,
+          height: 1.25,
         ),
         titleLarge: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: titleFontFamily,
+          color: AppColors.textPrimary,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          height: 1.3,
+        ),
+        titleMedium: TextStyle(
+          fontFamily: titleFontFamily,
           color: AppColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.w600,
-        ),
-        titleMedium: TextStyle(
-          fontFamily: _fontFamily,
-          color: AppColors.textPrimary,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          height: 1.3,
         ),
         bodyLarge: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: bodyFontFamily,
           color: AppColors.textPrimary,
           fontSize: 16,
         ),
         bodyMedium: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: bodyFontFamily,
           color: AppColors.textSecondary,
           fontSize: 14,
         ),
         bodySmall: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: bodyFontFamily,
           color: AppColors.textHint,
           fontSize: 12,
         ),
         labelLarge: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: bodyFontFamily,
           color: AppColors.textPrimary,
           fontSize: 14,
           fontWeight: FontWeight.w600,
@@ -153,7 +170,7 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.surfaceLight,
         contentTextStyle: TextStyle(
-          fontFamily: _fontFamily,
+          fontFamily: bodyFontFamily,
           color: AppColors.textPrimary,
         ),
         shape: RoundedRectangleBorder(

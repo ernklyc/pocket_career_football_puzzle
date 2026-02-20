@@ -21,6 +21,7 @@ dependencies:
 
   # Game Engine
   flame: ^1.23.0
+  flame_forge2d: ^0.19.2
 
   # Local Storage
   shared_preferences: ^2.3.4
@@ -67,15 +68,18 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: Grobold
+    - family: LuckiestGuy
       fonts:
-        - asset: assets/font/GROBOLD.ttf
+        - asset: assets/font/LuckiestGuy-Regular.ttf
 
   assets:
     - assets/images/
+    - assets/image/
+    - assets/logo/
     - assets/animations/
     - assets/buttons/
     - assets/league/
     - assets/pp/
     - assets/l10n/
+    - assets/lottie/
     - assets/levels.json

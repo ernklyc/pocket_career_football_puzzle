@@ -1,0 +1,3 @@
+com.erenkalayci.goalrisefc -> bundle id
+Futbol topu deseni
+zemin de paralı vb olsun

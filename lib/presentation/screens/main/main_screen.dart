@@ -11,7 +11,7 @@ import 'package:pocket_career_football_puzzle/domain/entities/puzzle.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 import 'package:pocket_career_football_puzzle/services/lives_service.dart';
 import 'package:pocket_career_football_puzzle/services/progress_service.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/banner_ad_widget.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/pressable_scale.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/shadowed_asset.dart';
 
 /// Yeni ana ekran — AppBar(profil, enerji, koleksiyon) + Orta(seviye bilgileri) + Alt(sıralama, oyna, mağaza)
@@ -129,7 +129,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     child: Row(
                       children: [
                         // Profil avatarı (ufak shadow)
-                        GestureDetector(
+                        PressableScale(
                           onTap: () => context.push('/profile'),
                           child: Container(
                             width: 44,
@@ -139,10 +139,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   ? Color(team.primaryColor)
                                   : AppColors.surfaceLight,
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 2,
-                              ),
+                              border: Border.all(color: Colors.white, width: 2),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.35),
@@ -168,7 +165,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                       child: Text(
                                         team?.logoEmoji ?? '⚽',
                                         style: TextStyle(
-                                          fontFamily: AppTheme.fontFamily,
+                                          fontFamily: AppTheme.bodyFontFamily,
                                           fontSize: 22,
                                         ),
                                       ),
@@ -178,8 +175,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         ),
                         const SizedBox(width: 4),
 
-                        // Enerji + Timer — arka plan yok, doğrudan AppBar (header) üzerinde
-                        GestureDetector(
+                        // Enerji + Timer — Row(enerji ikonu, Column(enerji sayısı, kalan süre))
+                        PressableScale(
                           onTap: () {
                             // Gelecekte enerji satın alma ekranı
                           },
@@ -194,8 +191,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(
-                                  width: 28,
-                                  height: 28,
+                                  width: 36,
+                                  height: 36,
                                   child: Center(
                                     child: Image.asset(
                                       'assets/buttons/energy.png',
@@ -204,79 +201,72 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                SizedBox(
-                                  height: 28,
-                                  child: Center(
-                                    child: Text(
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
                                       isPremium
                                           ? '∞'
                                           : '$lives/${LivesService.maxLives}',
                                       style: TextStyle(
-                                    fontFamily: AppTheme.fontFamily,
-                                    color: hasLives ? Colors.white : AppColors.error,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w800,
-                                    height: 1.0,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black.withValues(alpha: 0.7),
-                                        offset: const Offset(2, 2),
-                                        blurRadius: 4,
-                                      ),
-                                      Shadow(
-                                        color: Colors.black.withValues(alpha: 0.5),
-                                        offset: const Offset(0, 0),
-                                        blurRadius: 8,
-                                      ),
-                                    ],
-                                  ),
-                                    ),
-                                  ),
-                                ),
-                                if (!isPremium &&
-                                    lives < LivesService.maxLives &&
-                                    remaining != null &&
-                                    remaining > Duration.zero) ...[
-                                  const SizedBox(width: 12),
-                                  SizedBox(
-                                    width: 28,
-                                    height: 28,
-                                    child: Center(
-                                      child: Image.asset(
-                                        'assets/buttons/timer.png',
-                                        fit: BoxFit.contain,
+                                        fontFamily: AppTheme.titleFontFamily,
+                                        color: hasLives
+                                            ? Colors.white
+                                            : AppColors.error,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.0,
+                                        shadows: [
+                                          Shadow(
+                                            color: Colors.black.withValues(
+                                              alpha: 0.7,
+                                            ),
+                                            offset: const Offset(2, 2),
+                                            blurRadius: 4,
+                                          ),
+                                          Shadow(
+                                            color: Colors.black.withValues(
+                                              alpha: 0.5,
+                                            ),
+                                            offset: const Offset(0, 0),
+                                            blurRadius: 8,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  SizedBox(
-                                    height: 28,
-                                    child: Center(
-                                      child: Text(
+                                    if (!isPremium &&
+                                        lives < LivesService.maxLives &&
+                                        remaining != null &&
+                                        remaining > Duration.zero)
+                                      Text(
                                         _formatRemainingMMSS(remaining),
                                         style: TextStyle(
-                                      fontFamily: AppTheme.fontFamily,
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w800,
-                                      height: 1.0,
-                                      shadows: [
-                                        Shadow(
-                                          color: Colors.black.withValues(alpha: 0.7),
-                                          offset: const Offset(2, 2),
-                                          blurRadius: 4,
+                                          fontFamily: AppTheme.titleFontFamily,
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.0,
+                                          shadows: [
+                                            Shadow(
+                                              color: Colors.black.withValues(
+                                                alpha: 0.7,
+                                              ),
+                                              offset: const Offset(1, 1),
+                                              blurRadius: 2,
+                                            ),
+                                            Shadow(
+                                              color: Colors.black.withValues(
+                                                alpha: 0.5,
+                                              ),
+                                              offset: const Offset(0, 0),
+                                              blurRadius: 4,
+                                            ),
+                                          ],
                                         ),
-                                        Shadow(
-                                          color: Colors.black.withValues(alpha: 0.5),
-                                          offset: const Offset(0, 0),
-                                          blurRadius: 8,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                      ),
+                                  ],
                                 ),
-                                ),
-                                ],
                               ],
                             ),
                           ),
@@ -284,8 +274,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         const SizedBox(width: 4),
                         const Spacer(),
 
-                        // Koleksiyon butonu (sağa hizalı)
-                        GestureDetector(
+                        // Koleksiyon (Kupa Sergi, Bloklar, Başarımlar)
+                        PressableScale(
                           onTap: () => context.push('/collection'),
                           child: ShadowedAsset(
                             imagePath: 'assets/buttons/collection.png',
@@ -295,11 +285,24 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         ),
                         const SizedBox(width: 4),
 
-                        // Başarımlar butonu
-                        GestureDetector(
-                          onTap: () => context.push('/achievements'),
+                        // Ödüller (bakımda)
+                        PressableScale(
+                          onTap: () => context.push('/rewards'),
                           child: ShadowedAsset(
                             imagePath: 'assets/buttons/trophy.png',
+                            width: 48,
+                            height: 48,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+
+                        // Günlük Giriş Ödülleri
+                        PressableScale(
+                          onTap: () {
+                            // TODO: Günlük giriş ödülleri popup'ı açılacak
+                          },
+                          child: ShadowedAsset(
+                            imagePath: 'assets/image/gift.png',
                             width: 48,
                             height: 48,
                           ),
@@ -332,61 +335,57 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             ),
                             const SizedBox(height: 12),
                             // LEVELS — tabela, boyut texte göre küçük
-                            Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () => _showAllSectionsBoard(
-                                  context,
-                                  progress: progress,
-                                  totalLevels: totalLevels,
-                                  currentLevel: currentLevel,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Positioned.fill(
-                                      child: Image.asset(
-                                        'assets/buttons/orange_button.png',
-                                        fit: BoxFit.fill,
-                                        filterQuality: FilterQuality.medium,
+                            PressableScale(
+                              onTap: () => _showAllSectionsBoard(
+                                context,
+                                progress: progress,
+                                totalLevels: totalLevels,
+                                currentLevel: currentLevel,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Positioned.fill(
+                                    child: Image.asset(
+                                      'assets/buttons/orange_button.png',
+                                      fit: BoxFit.fill,
+                                      filterQuality: FilterQuality.medium,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 26,
+                                      vertical: 14,
+                                    ),
+                                    child: Text(
+                                      'SEE ALL LEVELS',
+                                      style: TextStyle(
+                                        fontFamily: AppTheme.titleFontFamily,
+                                        color: const Color(0xFFFFFBF0),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800,
+                                        letterSpacing: 0.6,
+                                        shadows: const [
+                                          Shadow(
+                                            color: Color(0xFF3E2723),
+                                            offset: Offset(2, 2),
+                                            blurRadius: 2,
+                                          ),
+                                          Shadow(
+                                            color: AppColors.parchmentText,
+                                            offset: Offset(1, 1),
+                                            blurRadius: 0,
+                                          ),
+                                          Shadow(
+                                            color: Color(0x40000000),
+                                            offset: Offset(0, 2),
+                                            blurRadius: 4,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 26,
-                                        vertical: 14,
-                                      ),
-                                      child: Text(
-                                        'SEE ALL LEVELS',
-                                        style: TextStyle(
-                                          fontFamily: AppTheme.fontFamily,
-                                          color: const Color(0xFFFFFBF0),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w800,
-                                          letterSpacing: 0.6,
-                                          shadows: const [
-                                            Shadow(
-                                              color: Color(0xFF3E2723),
-                                              offset: Offset(2, 2),
-                                              blurRadius: 2,
-                                            ),
-                                            Shadow(
-                                              color: AppColors.parchmentText,
-                                              offset: Offset(1, 1),
-                                              blurRadius: 0,
-                                            ),
-                                            Shadow(
-                                              color: Color(0x40000000),
-                                              offset: Offset(0, 2),
-                                              blurRadius: 4,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -396,9 +395,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   },
                 ),
               ),
-
-              // Banner Reklam
-              const BannerAdWidget(route: '/main'),
 
               // ═══════════════════ BOTTOM BAR ═══════════════════
               Container(
@@ -435,14 +431,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             label: 'Sıralama',
                             onTap: () => context.push('/leaderboard'),
                           ),
-                        ),  // Sıralama
-
-                        // Oyna butonu (parşömen stil, referans: button.png), referans: button.png)
+                        ), // Sıralama
+                        // Oyna butonu (parşömen stil)
                         Expanded(
                           flex: 2,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 4),
-                            child: GestureDetector(
+                            child: PressableScale(
                               onTap: () {
                                 if (!hasLives && !isCurrentCompleted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -480,127 +475,101 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.12),
+                                      color: Colors.black.withValues(
+                                        alpha: 0.12,
+                                      ),
                                       offset: const Offset(0, 1),
                                       blurRadius: 2,
                                     ),
                                   ],
                                 ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                      borderRadius: BorderRadius.circular(14),
-                                      onTap: () {
-                                      if (!hasLives && !isCurrentCompleted) {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Canın kalmadı. ${remainingStr.isNotEmpty ? '$remainingStr sonra dolacak.' : 'Kısa süre içinde dolacak.'}',
-                                            ),
-                                            duration: const Duration(
-                                              seconds: 2,
-                                            ),
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      context.go(
-                                        '/play',
-                                        extra: {
-                                          'season': career?.currentSeason ?? 1,
-                                          'level': currentLevel,
-                                          'isReplay': isCurrentCompleted,
-                                        },
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: 24,
-                                          child: Center(
-                                            child: Text(
-                                              isCurrentCompleted
-                                                  ? 'TEKRAR'
-                                                  : 'OYNA',
-                                              style: TextStyle(
-                                                fontFamily: AppTheme.fontFamily,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w800,
-                                                color: AppColors.fieldGreenDark,
-                                                letterSpacing: 0.5,
-                                                height: 1.0,
-                                                shadows: const [
-                                                  Shadow(
-                                                    color: Colors.white,
-                                                    offset: Offset(1, 1),
-                                                    blurRadius: 0,
-                                                  ),
-                                                  Shadow(
-                                                    color: Colors.white70,
-                                                    offset: Offset(0, 1),
-                                                    blurRadius: 0,
-                                                  ),
-                                                ],
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 24,
+                                      child: Center(
+                                        child: Text(
+                                          isCurrentCompleted
+                                              ? 'TEKRAR'
+                                              : 'OYNA',
+                                          style: TextStyle(
+                                            fontFamily:
+                                                AppTheme.titleFontFamily,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w800,
+                                            color: AppColors.fieldGreenDark,
+                                            letterSpacing: 0.5,
+                                            height: 1.0,
+                                            shadows: const [
+                                              Shadow(
+                                                color: Colors.white,
+                                                offset: Offset(1, 1),
+                                                blurRadius: 0,
                                               ),
-                                            ),
+                                              Shadow(
+                                                color: Colors.white70,
+                                                offset: Offset(0, 1),
+                                                blurRadius: 0,
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        if (!isPremium &&
-                                            !isCurrentCompleted) ...[
-                                          const SizedBox(width: 8),
-                                          SizedBox(
-                                            height: 24,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Center(
-                                                  child: Text(
-                                                    '-1',
-                                                    style: TextStyle(
-                                                      fontFamily: AppTheme.fontFamily,
-                                                      fontSize: 18,
-                                                      fontWeight: FontWeight.w800,
-                                                      color: AppColors.fieldGreenDark,
-                                                      height: 1.0,
-                                                      shadows: const [
-                                                        Shadow(
-                                                          color: Colors.white,
-                                                          offset: Offset(1, 1),
-                                                          blurRadius: 0,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 5),
-                                                SizedBox(
-                                                  width: 22,
-                                                  height: 22,
-                                                  child: Center(
-                                                    child: Image.asset(
-                                                      'assets/buttons/energy.png',
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                    if (!isPremium && !isCurrentCompleted) ...[
+                                      const SizedBox(width: 8),
+                                      SizedBox(
+                                        height: 24,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Center(
+                                              child: Text(
+                                                '-1',
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      AppTheme.titleFontFamily,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w800,
+                                                  color:
+                                                      AppColors.fieldGreenDark,
+                                                  height: 1.0,
+                                                  shadows: const [
+                                                    Shadow(
+                                                      color: Colors.white,
+                                                      offset: Offset(1, 1),
+                                                      blurRadius: 0,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 5),
+                                            SizedBox(
+                                              width: 22,
+                                              height: 22,
+                                              child: Center(
+                                                child: Image.asset(
+                                                  'assets/buttons/energy.png',
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                        ),  // Oyna
+                        ), // Oyna
 
                         // Mağaza
                         Expanded(
@@ -639,7 +608,7 @@ class _BottomBarImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return PressableScale(
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -649,7 +618,7 @@ class _BottomBarImageButton extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
+              fontFamily: AppTheme.bodyFontFamily,
               color: Colors.white,
               fontSize: 14,
               fontWeight: FontWeight.w800,
@@ -722,7 +691,12 @@ class _AllSectionsBoardState extends State<_AllSectionsBoard> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final ctx = _currentLevelKey.currentContext;
       if (ctx != null) {
-        Scrollable.ensureVisible(ctx, alignment: 0.4, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+        Scrollable.ensureVisible(
+          ctx,
+          alignment: 0.4,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+        );
       }
     });
   }
@@ -753,7 +727,7 @@ class _AllSectionsBoardState extends State<_AllSectionsBoard> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+          padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -761,7 +735,7 @@ class _AllSectionsBoardState extends State<_AllSectionsBoard> {
                 child: Text(
                   'Level $currentLevel / ${widget.totalLevels}',
                   style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
+                    fontFamily: AppTheme.titleFontFamily,
                     color: AppColors.parchmentText,
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
@@ -773,78 +747,81 @@ class _AllSectionsBoardState extends State<_AllSectionsBoard> {
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                   child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        mainAxisSpacing: 6,
-                        crossAxisSpacing: 6,
-                        childAspectRatio: 0.75,
-                      ),
-                      itemCount: count,
-                      itemBuilder: (context, index) {
-                    final levelNum = index + 1;
-                    final key = '$levelNum';
-                    final lp = progress.levels[key];
-                    final completed = lp?.completed ?? false;
-                    final points = lp?.matchPoints ?? 0;
-                    final pointsStr = completed
-                        ? (points >= 3
-                            ? '3p'
-                            : points >= 1
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: crossAxisCount,
+                          mainAxisSpacing: 6,
+                          crossAxisSpacing: 6,
+                          childAspectRatio: 0.75,
+                        ),
+                    itemCount: count,
+                    itemBuilder: (context, index) {
+                      final levelNum = index + 1;
+                      final key = '$levelNum';
+                      final lp = progress.levels[key];
+                      final completed = lp?.completed ?? false;
+                      final points = lp?.matchPoints ?? 0;
+                      final pointsStr = completed
+                          ? (points >= 3
+                                ? '3p'
+                                : points >= 1
                                 ? '1p'
                                 : '0p')
-                        : '—';
-                    final cell = Container(
-                      decoration: BoxDecoration(
-                        color: completed
-                            ? (points >= 3
-                                ? AppColors.success.withValues(alpha: 0.35)
-                                : points >= 1
+                          : '—';
+                      final cell = Container(
+                        decoration: BoxDecoration(
+                          color: completed
+                              ? (points >= 3
+                                    ? AppColors.success.withValues(alpha: 0.35)
+                                    : points >= 1
                                     ? AppColors.gold.withValues(alpha: 0.35)
                                     : AppColors.error.withValues(alpha: 0.35))
-                            : AppColors.parchmentFill.withValues(alpha: 0.5),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: AppColors.parchmentBorder.withValues(alpha: 0.6),
-                          width: 1,
-                        ),
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '$levelNum',
-                              style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
-                                color: AppColors.parchmentText,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
-                              ),
+                              : AppColors.parchmentFill.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: AppColors.parchmentBorder.withValues(
+                              alpha: 0.6,
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              pointsStr,
-                              style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
-                                color: AppColors.parchmentText,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ],
+                            width: 1,
+                          ),
                         ),
-                      ),
-                    );
-                    if (index == currentLevel - 1) {
-                      return KeyedSubtree(key: _currentLevelKey, child: cell);
-                    }
-                    return cell;
-                      },
-                    ),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '$levelNum',
+                                style: TextStyle(
+                                  fontFamily: AppTheme.titleFontFamily,
+                                  color: AppColors.parchmentText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                pointsStr,
+                                style: TextStyle(
+                                  fontFamily: AppTheme.titleFontFamily,
+                                  color: AppColors.parchmentText,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                      if (index == currentLevel - 1) {
+                        return KeyedSubtree(key: _currentLevelKey, child: cell);
+                      }
+                      return cell;
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
@@ -852,7 +829,7 @@ class _AllSectionsBoardState extends State<_AllSectionsBoard> {
           ),
         ),
       ),
-  );
+    );
   }
 }
 
@@ -913,11 +890,9 @@ class _CurrentLevelCard extends StatelessWidget {
             children: [
               // Tek blok: Level + zorluk + istatistikler/puan
               Text(
-                isCompleted
-                    ? 'Level $levelNumber ✓'
-                    : 'Level $levelNumber',
+                isCompleted ? 'Level $levelNumber ✓' : 'Level $levelNumber',
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.titleFontFamily,
                   color: AppColors.parchmentText,
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
@@ -934,7 +909,7 @@ class _CurrentLevelCard extends StatelessWidget {
               Text(
                 '$levelNumber / $totalLevels',
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.titleFontFamily,
                   color: AppColors.parchmentTextSecondary,
                   fontSize: 11,
                 ),
@@ -991,11 +966,13 @@ class _CurrentLevelCard extends StatelessWidget {
                     ),
                     _PuanChip(
                       label: '1 Puan',
-                      moveInfo: 'max ${optimalMoves + ((maxMoves - optimalMoves) * 0.5).ceil()} hamle',
+                      moveInfo:
+                          'max ${optimalMoves + ((maxMoves - optimalMoves) * 0.5).ceil()} hamle',
                     ),
                     _PuanChip(
                       label: '0 Puan',
-                      moveInfo: 'min ${optimalMoves + ((maxMoves - optimalMoves) * 0.5).ceil() + 1} hamle',
+                      moveInfo:
+                          'min ${optimalMoves + ((maxMoves - optimalMoves) * 0.5).ceil() + 1} hamle',
                     ),
                   ],
                 ),
@@ -1083,7 +1060,7 @@ class _DifficultyBadge extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-              fontFamily: AppTheme.fontFamily,
+              fontFamily: AppTheme.titleFontFamily,
               color: const Color(0xFFFFFBF0),
               fontSize: 14,
               fontWeight: FontWeight.w800,
@@ -1117,15 +1094,12 @@ class _DifficultyBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: bgColor.withValues(alpha: 0.4),
-          width: 1,
-        ),
+        border: Border.all(color: bgColor.withValues(alpha: 0.4), width: 1),
       ),
       child: Text(
         label,
         style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
+          fontFamily: AppTheme.bodyFontFamily,
           color: bgColor,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -1157,7 +1131,7 @@ class _PuanChip extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.titleFontFamily,
             color: AppColors.parchmentText,
             fontSize: 14,
             fontWeight: FontWeight.w700,
@@ -1167,7 +1141,7 @@ class _PuanChip extends StatelessWidget {
         Text(
           moveInfo,
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.bodyFontFamily,
             color: AppColors.parchmentTextSecondary,
             fontSize: 10,
             fontWeight: FontWeight.w600,
@@ -1195,10 +1169,18 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelColor = onParchment ? AppColors.parchmentTextSecondary : AppColors.textSecondary;
-    final valueDefaultColor = onParchment ? AppColors.parchmentText : AppColors.textPrimary;
-    final iconColor = onParchment ? AppColors.parchmentTextSecondary : AppColors.textHint;
-    final effectiveValueColor = onParchment ? AppColors.parchmentText : (valueColor ?? valueDefaultColor);
+    final labelColor = onParchment
+        ? AppColors.parchmentTextSecondary
+        : AppColors.textSecondary;
+    final valueDefaultColor = onParchment
+        ? AppColors.parchmentText
+        : AppColors.textPrimary;
+    final iconColor = onParchment
+        ? AppColors.parchmentTextSecondary
+        : AppColors.textHint;
+    final effectiveValueColor = onParchment
+        ? AppColors.parchmentText
+        : (valueColor ?? valueDefaultColor);
     return Row(
       children: [
         Icon(icon, color: iconColor, size: 18),
@@ -1206,7 +1188,7 @@ class _InfoRow extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.bodyFontFamily,
             color: labelColor,
             fontSize: 13,
           ),
@@ -1215,7 +1197,7 @@ class _InfoRow extends StatelessWidget {
         Text(
           value,
           style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.bodyFontFamily,
             color: effectiveValueColor,
             fontSize: 14,
             fontWeight: FontWeight.w600,

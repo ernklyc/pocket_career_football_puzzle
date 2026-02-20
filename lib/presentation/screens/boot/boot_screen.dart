@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 
@@ -49,104 +48,74 @@ class BootScreen extends ConsumerWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Arka plan — home ile aynı
+          // Arka plan — yeşil saha
           Positioned.fill(
             child: Image.asset(
-              'assets/buttons/background.png',
+              'assets/league/5.png',
               fit: BoxFit.cover,
             ),
           ),
+          // Ortada logo + text logo + progress
           Center(
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Logo
-                  Container(
-                    width: 120,
+                  // Ortada logo (top + platform)
+                  Image.asset(
+                    'assets/logo/splash.png',
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 12),
+                  // Oyun ismi — text logo
+                  Image.asset(
+                    'assets/logo/text_logo.png',
                     height: 120,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryLight,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primaryLight.withValues(alpha: 0.3),
-                          blurRadius: 30,
-                          spreadRadius: 5,
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.sports_soccer,
-                      size: 60,
-                      color: Colors.white,
-                    ),
+                    fit: BoxFit.contain,
                   ),
                   const SizedBox(height: 32),
-                  Text(
-                    'POCKET CAREER',
-                    style: TextStyle(
-                      fontFamily: AppTheme.fontFamily,
-                      color: AppColors.textPrimary,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 4,
-                      shadows: const [
-                        Shadow(
-                          color: Colors.black54,
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Football Puzzle',
-                    style: TextStyle(
-                      fontFamily: AppTheme.fontFamily,
-                      color: AppColors.accent,
-                      fontSize: 16,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                  const SizedBox(height: 48),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: AppColors.surface.withValues(alpha: 0.85),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 12,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Row(
+                  SizedBox(
+                    width: 200,
+                    child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const SizedBox(
-                          width: 28,
-                          height: 28,
-                          child: CircularProgressIndicator(
-                            color: AppColors.accent,
-                            strokeWidth: 3,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
                         if (isLoading)
                           Text(
                             'Bulmacalar hazırlanıyor...',
                             style: TextStyle(
-                              fontFamily: AppTheme.fontFamily,
-                              color: AppColors.parchmentTextSecondary,
+                              fontFamily: AppTheme.bodyFontFamily,
+                              color: Colors.white,
                               fontSize: 12,
+                              shadows: const [
+                                Shadow(
+                                  color: Colors.black54,
+                                  offset: Offset(1, 1),
+                                  blurRadius: 2,
+                                ),
+                              ],
                             ),
                           ),
+                        if (isLoading) const SizedBox(height: 10),
+                        Container(
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.35),
+                            borderRadius: BorderRadius.circular(2.5),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(2.5),
+                            child: isLoading
+                                ? LinearProgressIndicator(
+                                    backgroundColor: Colors.transparent,
+                                    valueColor: const AlwaysStoppedAnimation<Color>(
+                                      Colors.white,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                        ),
                       ],
                     ),
                   ),

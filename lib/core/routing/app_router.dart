@@ -14,7 +14,7 @@ import 'package:pocket_career_football_puzzle/presentation/screens/results/score
 import 'package:pocket_career_football_puzzle/presentation/screens/results/new_record_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/shop/shop_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/collection/collection_screen.dart';
-import 'package:pocket_career_football_puzzle/presentation/screens/achievements/achievements_screen.dart';
+import 'package:pocket_career_football_puzzle/presentation/screens/rewards/rewards_screen.dart';
 
 /// GoRouter konfigürasyonu.
 class AppRouter {
@@ -163,12 +163,20 @@ class AppRouter {
             _buildPage(state, const CollectionScreen(), 'collection'),
       ),
 
-      // Achievements
+      // Rewards (Ödüller)
+      GoRoute(
+        path: '/rewards',
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) =>
+            _buildPage(state, const RewardsScreen(), 'rewards'),
+      ),
+
+      // Achievements — Koleksiyon ekranına yönlendir (aynı içerik)
       GoRoute(
         path: '/achievements',
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
-            _buildPage(state, const AchievementsScreen(), 'achievements'),
+            _buildPage(state, const CollectionScreen(), 'achievements'),
       ),
     ],
   );

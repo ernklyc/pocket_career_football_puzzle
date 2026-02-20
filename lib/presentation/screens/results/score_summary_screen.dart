@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocket_career_football_puzzle/core/config/progression_schema.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
@@ -23,8 +24,8 @@ class ScoreSummaryScreen extends ConsumerWidget {
   static const _cardShadow = [
     BoxShadow(
       color: Colors.black26,
-      offset: Offset(0, 4),
-      blurRadius: 8,
+      offset: Offset(0, 2),
+      blurRadius: 6,
       spreadRadius: 0,
     ),
   ];
@@ -57,11 +58,9 @@ class ScoreSummaryScreen extends ConsumerWidget {
           pointsText = '$matchPoints Puan';
           break;
         case MatchResult.draw:
-          resultAssetPath = 'assets/buttons/draw.png';
-          pointsText = '$matchPoints Puan';
-          break;
         case MatchResult.loss:
-          resultAssetPath = 'assets/buttons/lose.png';
+          // Level tamamlandıysa (gol atıldı) lose gösterme — draw ile temsil et.
+          resultAssetPath = 'assets/buttons/draw.png';
           pointsText = '$matchPoints Puan';
           break;
       }
@@ -74,7 +73,7 @@ class ScoreSummaryScreen extends ConsumerWidget {
             child: Image.asset(
               'assets/league/5.png',
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Image.asset(
+              errorBuilder: (context, error, stackTrace) => Image.asset(
                 'assets/buttons/background.png',
                 fit: BoxFit.cover,
               ),
@@ -91,7 +90,7 @@ class ScoreSummaryScreen extends ConsumerWidget {
                   // Ana kart — paper (win/lose/draw PNG + büyük puan yazısı, LEVEL yok)
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.fromLTRB(28, 28, 28, 24),
+                    padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
                         image: AssetImage('assets/buttons/paper.png'),
@@ -105,14 +104,15 @@ class ScoreSummaryScreen extends ConsumerWidget {
                       children: [
                         ShadowedAsset(
                           imagePath: resultAssetPath,
-                          width: 100,
-                          height: 100,
+                          width: 180,
+                          height: 80,
+                          fit: BoxFit.contain,
                         ),
                         const SizedBox(height: 10),
                         Text(
                           pointsText,
                           style: TextStyle(
-                            fontFamily: AppTheme.fontFamily,
+                            fontFamily: AppTheme.titleFontFamily,
                             color: AppColors.parchmentText,
                             fontSize: 28,
                             fontWeight: FontWeight.w900,
@@ -136,13 +136,13 @@ class ScoreSummaryScreen extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.fromLTRB(36, 32, 36, 28),
+                      padding: const EdgeInsets.fromLTRB(32, 28, 32, 28),
                       decoration: BoxDecoration(
                         image: const DecorationImage(
                           image: AssetImage('assets/buttons/paper.png'),
                           fit: BoxFit.fill,
                         ),
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(12),
                         boxShadow: _cardShadow,
                       ),
                       child: Column(
@@ -172,15 +172,6 @@ class ScoreSummaryScreen extends ConsumerWidget {
                             optimalMoves: result.optimalMoves,
                             movesMax: result.movesMax,
                           ),
-                          if (result.coinsEarned > 0) ...[
-                            const _PaperDivider(),
-                            _StatRow(
-                              label: context.tr('results_coins_earned'),
-                              value: '+${result.coinsEarned}',
-                              valueColor: AppColors.coin,
-                              icon: Icons.monetization_on,
-                            ),
-                          ],
                         ],
                       ),
                     ),
@@ -207,18 +198,13 @@ class ScoreSummaryScreen extends ConsumerWidget {
                                 label: context.tr('results_next'),
                                 textColor: AppColors.fieldGreenDark,
                                 onTap: () {
-                                  const maxLevel = 100;
+                                  final maxLevel = ProgressionSchema.levelCount;
                                   if (result.levelNumber >= maxLevel) {
                                     context.go('/game/main');
                                     return;
                                   }
                                   final nextLevel = result.levelNumber + 1;
-                                  if (result.levelNumber % 5 == 0) {
-                                    ref.read(nextLevelAfterPaywallProvider.notifier).state = nextLevel;
-                                    context.go('/paywall/coins');
-                                  } else {
-                                    context.go('/play', extra: {'season': 1, 'level': nextLevel});
-                                  }
+                                  context.go('/play', extra: {'season': 1, 'level': nextLevel});
                                 },
                               )
                             : _AssetTextButton(
@@ -276,7 +262,7 @@ class _AssetTextButton extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-              fontFamily: AppTheme.fontFamily,
+              fontFamily: AppTheme.titleFontFamily,
               fontSize: 18,
               fontWeight: FontWeight.w800,
               color: textColor,
@@ -352,7 +338,7 @@ class _PuanHamleChip extends StatelessWidget {
         Text(
           '$puan Puan',
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.titleFontFamily,
             color: AppColors.parchmentText,
             fontSize: 15,
             fontWeight: FontWeight.w900,
@@ -362,7 +348,7 @@ class _PuanHamleChip extends StatelessWidget {
         Text(
           sub,
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.titleFontFamily,
             color: AppColors.parchmentTextSecondary,
             fontSize: 11,
             fontWeight: FontWeight.w500,
@@ -401,13 +387,11 @@ class _StatRow extends StatelessWidget {
   final String label;
   final String value;
   final Color? valueColor;
-  final IconData? icon;
 
   const _StatRow({
     required this.label,
     required this.value,
     this.valueColor,
-    this.icon,
   });
 
   @override
@@ -424,7 +408,7 @@ class _StatRow extends StatelessWidget {
               child: Text(
                 label,
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.titleFontFamily,
                   color: AppColors.parchmentTextSecondary,
                   fontSize: 14,
                 ),
@@ -436,16 +420,12 @@ class _StatRow extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (icon != null) ...[
-                  Icon(icon, color: valueColor ?? AppColors.parchmentText, size: 16),
-                  const SizedBox(width: 4),
-                ],
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: Text(
                     value,
                     style: TextStyle(
-                      fontFamily: AppTheme.fontFamily,
+                      fontFamily: AppTheme.titleFontFamily,
                       color: valueColor ?? AppColors.parchmentText,
                       fontSize: 16,
                       fontWeight: FontWeight.w800,

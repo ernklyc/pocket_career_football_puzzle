@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/app_bar_parchment.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/under_maintenance_widget.dart';
 
-/// Mağaza ekranı — şu an geliştirme aşamasında (bakımda).
-class ShopScreen extends ConsumerWidget {
-  const ShopScreen({super.key});
+/// Ödüller ekranı — bakımda.
+class RewardsScreen extends ConsumerWidget {
+  const RewardsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +20,7 @@ class ShopScreen extends ConsumerWidget {
           ),
           Column(
             children: [
-              AppBarParchment(title: context.tr('shop_title')),
+              const AppBarParchment(title: 'Ödüller'),
               Expanded(
                 child: const UnderMaintenanceWidget(fullPage: true),
               ),

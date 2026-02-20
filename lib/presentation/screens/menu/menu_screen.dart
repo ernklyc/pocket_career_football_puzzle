@@ -7,7 +7,6 @@ import 'package:pocket_career_football_puzzle/core/theme/layout_constants.dart';
 import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/coin_display.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/banner_ad_widget.dart';
 
 /// Ana menü ekranı.
 class MenuScreen extends ConsumerWidget {
@@ -129,7 +128,7 @@ class MenuScreen extends ConsumerWidget {
                             Text(
                               'POCKET CAREER',
                               style: TextStyle(
-                                fontFamily: AppTheme.fontFamily,
+                                fontFamily: AppTheme.titleFontFamily,
                                 color: AppColors.parchmentText,
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900,
@@ -139,7 +138,7 @@ class MenuScreen extends ConsumerWidget {
                             Text(
                               'Football Puzzle',
                               style: TextStyle(
-                                fontFamily: AppTheme.fontFamily,
+                                fontFamily: AppTheme.bodyFontFamily,
                                 color: AppColors.parchmentTextSecondary,
                                 fontSize: 12,
                                 letterSpacing: 1.4,
@@ -170,7 +169,7 @@ class MenuScreen extends ConsumerWidget {
                                           Text(
                                             activeCareer.playerName,
                                             style: TextStyle(
-                                              fontFamily: AppTheme.fontFamily,
+                                              fontFamily: AppTheme.bodyFontFamily,
                                               color: AppColors.textPrimary,
                                               fontWeight: FontWeight.w800,
                                             ),
@@ -301,7 +300,7 @@ class MenuScreen extends ConsumerWidget {
                 ),
               ),
 
-              // Bottom bar + banner
+              // Bottom bar
               Container(
                 decoration: BoxDecoration(
                   image: const DecorationImage(
@@ -325,10 +324,7 @@ class MenuScreen extends ConsumerWidget {
                 ),
                 child: const SafeArea(
                   top: false,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: BannerAdWidget(route: '/menu'),
-                  ),
+                  child: SizedBox(height: 24),
                 ),
               ),
             ],
@@ -379,7 +375,7 @@ class _MenuButton extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  fontFamily: AppTheme.fontFamily,
+                  fontFamily: AppTheme.bodyFontFamily,
                   color: AppColors.textPrimary,
                   fontSize: compact ? 14 : 16,
                   fontWeight: FontWeight.w800,

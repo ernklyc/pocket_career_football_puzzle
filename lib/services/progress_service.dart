@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:pocket_career_football_puzzle/core/config/progression_schema.dart';
 import 'package:pocket_career_football_puzzle/data/datasources/local/local_storage.dart';
-import 'package:pocket_career_football_puzzle/data/repositories/level_repository.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/puzzle.dart';
 import 'package:pocket_career_football_puzzle/core/logging/logger.dart';
 
@@ -164,8 +164,8 @@ class ProgressService {
     final updatedLevels = Map<String, LevelProgress>.from(progress.levels);
     updatedLevels[key] = levelProgress;
 
-    // Sonraki level'a ilerle (max 100)
-    final nextLevel = (level + 1).clamp(1, LevelRepository.totalLevels);
+    // Sonraki level'a ilerle — schema'dan max
+    final nextLevel = (level + 1).clamp(1, ProgressionSchema.levelCount);
 
     final updated = progress.copyWith(
       levels: updatedLevels,

@@ -15,7 +15,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     final isSignedIn = ref.watch(authProvider) != null;
-    final isPremium = ref.watch(entitlementProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -123,39 +122,6 @@ class SettingsScreen extends ConsumerWidget {
 
           const SizedBox(height: 16),
 
-          // Satın Alma
-          _SettingsSection(
-            title: 'Satın Alma',
-            child: Column(
-              children: [
-                if (!isPremium)
-                  _ActionRow(
-                    icon: Icons.block,
-                    label: context.tr('settings_remove_ads'),
-                    color: AppColors.premium,
-                    onTap: () => context.go('/paywall/remove-ads'),
-                  ),
-                _ActionRow(
-                  icon: Icons.restore,
-                  label: context.tr('settings_restore_purchases'),
-                  onTap: () async {
-                    final purchases = ref.read(purchasesServiceProvider);
-                    final success = await purchases.restorePurchases();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(success ? 'Satın alımlar geri yüklendi' : 'Geri yükleme başarısız'),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
           // Yasal
           _SettingsSection(
             title: 'Yasal',
@@ -212,7 +178,7 @@ class _SettingsSection extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontFamily: AppTheme.fontFamily,
+            fontFamily: AppTheme.titleFontFamily,
             color: AppColors.parchmentTextSecondary,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -268,7 +234,7 @@ class _ToggleRow extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                fontFamily: AppTheme.fontFamily,
+                fontFamily: AppTheme.titleFontFamily,
                 color: AppColors.textPrimary,
               ),
             ),
@@ -304,7 +270,7 @@ class _ActionRow extends StatelessWidget {
       title: Text(
         label,
         style: TextStyle(
-          fontFamily: AppTheme.fontFamily,
+          fontFamily: AppTheme.titleFontFamily,
           color: color ?? AppColors.textPrimary,
         ),
       ),

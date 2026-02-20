@@ -1,18 +1,19 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:pocket_career_football_puzzle/core/config/progression_schema.dart';
 import 'package:pocket_career_football_puzzle/domain/entities/puzzle.dart';
 import 'package:pocket_career_football_puzzle/core/logging/logger.dart';
 
 /// Sabit level deposu.
-/// Önceden üretilmiş 100 leveli assets/levels.json'dan okur.
-/// Anlık yükleme — runtime üretim yok.
+/// assets/levels.json'dan okur — level sayısı ProgressionSchema'dan.
 ///
 /// Level güncelleme akışı:
 ///   1. lib/game/level_configs.dart → parametreleri düzenle
 ///   2. dart run bin/generate_levels.dart → JSON üret
 ///   3. Uygulamayı build et → yeni leveller gömülü gelir
 class LevelRepository {
-  static const int totalLevels = 100;
+  /// Schema'dan — init öncesi fallback.
+  static int get totalLevels => ProgressionSchema.levelCount;
 
   List<PuzzleLevel>? _cachedLevels;
 
@@ -49,6 +50,9 @@ class LevelRepository {
   /// Tüm levelleri al.
   List<PuzzleLevel> getAllLevels() => _cachedLevels ?? [];
 
-  /// Toplam level sayısı.
-  int get levelCount => _cachedLevels?.length ?? 0;
+  /// Toplam level sayısı — yüklü ise cached, değilse schema.
+  int get levelCount =>
+      _cachedLevels != null && _cachedLevels!.isNotEmpty
+          ? _cachedLevels!.length
+          : ProgressionSchema.levelCount;
 }
