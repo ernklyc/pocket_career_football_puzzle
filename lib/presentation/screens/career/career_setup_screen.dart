@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
+import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
+import 'package:pocket_career_football_puzzle/core/theme/layout_constants.dart';
 import 'package:pocket_career_football_puzzle/core/config/app_config.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/pressable_scale.dart';
 
 /// İlk açılışta gösterilen kısa kariyer oluşturma formu.
 class CareerSetupScreen extends ConsumerStatefulWidget {
@@ -71,222 +74,350 @@ class _CareerSetupScreenState extends ConsumerState<CareerSetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    final paddingV = (size.height * 0.028).clamp(20.0, 32.0);
+    final titleFontSize = (size.width * 0.058).clamp(20.0, 26.0);
+
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
+      backgroundColor: const Color(0xFF2C1810),
+      body: SizedBox.expand(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/league/1.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: HomeLayout.screenHorizontalPadding,
+                vertical: paddingV,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 12),
 
-              // Başlık
-              const Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.sports_soccer,
-                      size: 60,
-                      color: AppColors.primaryLight,
+                  // Başlık — paper kart
+                  _PaperCard(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 20,
                     ),
-                    SizedBox(height: 12),
-                    Text(
-                      'Kariyerini Başlat',
-                      style: TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Logonu seç, takım ve oyuncu adını belirle!',
-                      style: TextStyle(color: AppColors.textHint, fontSize: 13),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 36),
-
-              // 1) Logo seçimi — sadece emoji, isim yok
-              const Text(
-                'Takımının Logosunu Seç',
-                style: TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 10),
-
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 1,
-                ),
-                itemCount: AppConfig.availableTeams.length,
-                itemBuilder: (_, i) {
-                  final team = AppConfig.availableTeams[i];
-                  final isSelected = team.id == _selectedTeamId;
-                  return GestureDetector(
-                    onTap: () => setState(() => _selectedTeamId = team.id),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? Color(team.primaryColor).withValues(alpha: 0.15)
-                            : AppColors.cardBackground,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: isSelected
-                              ? Color(team.primaryColor)
-                              : AppColors.surfaceLight,
-                          width: isSelected ? 2.5 : 1,
-                        ),
-                      ),
-                      child: Center(
-                        child: team.logoAssetPath != null
-                            ? ClipOval(
-                                child: Image.asset(
-                                  team.logoAssetPath!,
-                                  width: 56,
-                                  height: 56,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            : Text(
-                                team.logoEmoji,
-                                style: const TextStyle(fontSize: 30),
-                              ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(height: 28),
-
-              // 2) Takım adı
-              const Text(
-                'Takım Adı',
-                style: TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _teamNameController,
-                maxLength: 20,
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 16,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Takım adını gir...',
-                  hintStyle: TextStyle(
-                    color: AppColors.textHint.withValues(alpha: 0.5),
-                  ),
-                  counterStyle: const TextStyle(color: AppColors.textHint),
-                  filled: true,
-                  fillColor: AppColors.cardBackground,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 14,
-                  ),
-                ),
-                textCapitalization: TextCapitalization.words,
-              ),
-
-              const SizedBox(height: 16),
-
-              // 3) Oyuncu adı
-              const Text(
-                'Oyuncu Adı',
-                style: TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _nameController,
-                maxLength: 20,
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 16,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'İsmini gir...',
-                  hintStyle: TextStyle(
-                    color: AppColors.textHint.withValues(alpha: 0.5),
-                  ),
-                  counterStyle: const TextStyle(color: AppColors.textHint),
-                  filled: true,
-                  fillColor: AppColors.cardBackground,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 14,
-                  ),
-                ),
-                textCapitalization: TextCapitalization.words,
-              ),
-
-              const SizedBox(height: 32),
-
-              // Başla butonu
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: _isCreating ? null : _createAndStart,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryLight,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 4,
-                  ),
-                  child: _isCreating
-                      ? const SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: 2,
-                          ),
-                        )
-                      : const Text(
-                          'Başla!',
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Kariyerini Başlat',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: AppTheme.titleFontFamily,
+                            color: AppColors.parchmentText,
+                            fontSize: titleFontSize,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
-                ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Logonu seç, takım ve oyuncu adını belirle!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.parchmentTextSecondary,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // 1) Takım logosu — paper kart
+                  _PaperCard(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Takımının Logosunu Seç',
+                          style: TextStyle(
+                            fontFamily: AppTheme.titleFontFamily,
+                            color: AppColors.parchmentText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 5,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 1,
+                          ),
+                          itemCount: AppConfig.availableTeams.length,
+                          itemBuilder: (_, i) {
+                            final team = AppConfig.availableTeams[i];
+                            final isSelected = team.id == _selectedTeamId;
+                            return GestureDetector(
+                              onTap: () =>
+                                  setState(() => _selectedTeamId = team.id),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 200),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: isSelected
+                                      ? Color(team.primaryColor)
+                                          .withValues(alpha: 0.2)
+                                      : AppColors.parchmentFillDark,
+                                  border: Border.all(
+                                    color: isSelected
+                                        ? Color(team.primaryColor)
+                                        : AppColors.parchmentBorder
+                                            .withValues(alpha: 0.5),
+                                    width: isSelected ? 2.5 : 1,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: team.logoAssetPath != null
+                                      ? ClipOval(
+                                          child: Image.asset(
+                                            team.logoAssetPath!,
+                                            width: 48,
+                                            height: 48,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )
+                                      : Text(
+                                          team.logoEmoji,
+                                          style: TextStyle(
+                                            fontFamily: AppTheme.titleFontFamily,
+                                            fontSize: 24,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // 2) Takım adı — paper kart
+                  _PaperCard(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Takım Adı',
+                          style: TextStyle(
+                            fontFamily: AppTheme.titleFontFamily,
+                            color: AppColors.parchmentText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: _teamNameController,
+                          maxLength: 20,
+                          style: const TextStyle(
+                            color: AppColors.parchmentText,
+                            fontSize: 16,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: 'Takım adını gir...',
+                            hintStyle: TextStyle(
+                              color: AppColors.parchmentTextSecondary
+                                  .withValues(alpha: 0.8),
+                            ),
+                            counterStyle: TextStyle(
+                              color: AppColors.parchmentTextSecondary,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.parchmentFill
+                                .withValues(alpha: 0.5),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
+                          ),
+                          textCapitalization: TextCapitalization.words,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // 3) Oyuncu adı — paper kart
+                  _PaperCard(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Oyuncu Adı',
+                          style: TextStyle(
+                            fontFamily: AppTheme.titleFontFamily,
+                            color: AppColors.parchmentText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          controller: _nameController,
+                          maxLength: 20,
+                          style: const TextStyle(
+                            color: AppColors.parchmentText,
+                            fontSize: 16,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: 'İsmini gir...',
+                            hintStyle: TextStyle(
+                              color: AppColors.parchmentTextSecondary
+                                  .withValues(alpha: 0.8),
+                            ),
+                            counterStyle: TextStyle(
+                              color: AppColors.parchmentTextSecondary,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.parchmentFill
+                                .withValues(alpha: 0.5),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
+                          ),
+                          textCapitalization: TextCapitalization.words,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Başla butonu
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: PressableScale(
+                      onTap: _isCreating ? null : _createAndStart,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          image: const DecorationImage(
+                            image: AssetImage(
+                              'assets/buttons/play_button_v2.png',
+                            ),
+                            fit: BoxFit.fill,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.25),
+                              offset: const Offset(0, 2),
+                              blurRadius: 6,
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: _isCreating
+                              ? const SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : Text(
+                                  'BAŞLA!',
+                                  style: TextStyle(
+                                    fontFamily: AppTheme.titleFontFamily,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.fieldGreenDark,
+                                    letterSpacing: 0.5,
+                                    shadows: const [
+                                      Shadow(
+                                        color: Colors.white,
+                                        offset: Offset(1, 1),
+                                        blurRadius: 0,
+                                      ),
+                                      Shadow(
+                                        color: Colors.white70,
+                                        offset: Offset(0, 1),
+                                        blurRadius: 0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 32),
+                ],
               ),
-            ],
+            ),
           ),
+        ],
         ),
       ),
+    );
+  }
+}
+
+class _PaperCard extends StatelessWidget {
+  final EdgeInsetsGeometry padding;
+  final Widget child;
+
+  const _PaperCard({
+    required this.padding,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        image: const DecorationImage(
+          image: AssetImage('assets/buttons/paper.png'),
+          fit: BoxFit.fill,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.25),
+            offset: const Offset(0, 4),
+            blurRadius: 12,
+          ),
+        ],
+      ),
+      child: Padding(padding: padding, child: child),
     );
   }
 }

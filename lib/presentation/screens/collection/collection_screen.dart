@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/app_bar_parchment.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/under_maintenance_widget.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/coming_soon_widget.dart';
 
-/// Koleksiyon ekranı — Kupa Sergim, Bloklarım, Başarımlarım (hepsi tek sayfada).
-class CollectionScreen extends ConsumerWidget {
+/// Koleksiyon ekranı — Kupa Sergim, Bloklarım, Başarımlarım (ileride yapılacak).
+class CollectionScreen extends StatelessWidget {
   const CollectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
@@ -29,30 +28,31 @@ class CollectionScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 1. Kupa Sergim
                       _SectionCard(
                         icon: Icons.emoji_events,
                         title: 'Kupa Sergim',
-                        iconColor: AppColors.parchmentText,
-                        child: const UnderMaintenanceWidget(fullPage: false),
+                        child: const ComingSoonWidget(
+                          fullPage: false,
+                          usePaperBackground: false,
+                        ),
                       ),
                       const SizedBox(height: 16),
-
-                      // 2. Bloklarım
                       _SectionCard(
                         icon: Icons.extension,
                         title: 'Bloklarım',
-                        iconColor: AppColors.parchmentText,
-                        child: const UnderMaintenanceWidget(fullPage: false),
+                        child: const ComingSoonWidget(
+                          fullPage: false,
+                          usePaperBackground: false,
+                        ),
                       ),
                       const SizedBox(height: 16),
-
-                      // 3. Başarımlarım
                       _SectionCard(
                         icon: Icons.military_tech,
                         title: 'Başarımlarım',
-                        iconColor: AppColors.parchmentText,
-                        child: const UnderMaintenanceWidget(fullPage: false),
+                        child: const ComingSoonWidget(
+                          fullPage: false,
+                          usePaperBackground: false,
+                        ),
                       ),
                       const SizedBox(height: 24),
                     ],
@@ -70,13 +70,11 @@ class CollectionScreen extends ConsumerWidget {
 class _SectionCard extends StatelessWidget {
   final IconData icon;
   final String title;
-  final Color iconColor;
   final Widget child;
 
   const _SectionCard({
     required this.icon,
     required this.title,
-    required this.iconColor,
     required this.child,
   });
 
@@ -105,7 +103,7 @@ class _SectionCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(28, 14, 16, 8),
             child: Row(
               children: [
-                Icon(icon, color: iconColor, size: 22),
+                Icon(icon, color: AppColors.parchmentText, size: 22),
                 const SizedBox(width: 6),
                 Text(
                   title,

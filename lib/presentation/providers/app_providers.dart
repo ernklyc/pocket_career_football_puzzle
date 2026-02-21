@@ -5,7 +5,6 @@ import 'package:pocket_career_football_puzzle/services/ads_service.dart';
 import 'package:pocket_career_football_puzzle/services/auth_service.dart';
 import 'package:pocket_career_football_puzzle/services/career_service.dart';
 import 'package:pocket_career_football_puzzle/services/currency_service.dart';
-import 'package:pocket_career_football_puzzle/services/inventory_service.dart';
 import 'package:pocket_career_football_puzzle/services/lives_service.dart';
 import 'package:pocket_career_football_puzzle/services/progress_service.dart';
 import 'package:pocket_career_football_puzzle/services/purchases_service.dart';
@@ -30,10 +29,6 @@ final currencyServiceProvider = Provider<CurrencyService>((ref) {
 
 final careerServiceProvider = Provider<CareerService>((ref) {
   return CareerService(ref.watch(localStorageProvider));
-});
-
-final inventoryServiceProvider = Provider<InventoryService>((ref) {
-  return InventoryService(ref.watch(localStorageProvider));
 });
 
 final progressServiceProvider = Provider<ProgressService>((ref) {
@@ -114,14 +109,6 @@ final appBootstrapProvider = FutureProvider<bool>((ref) async {
 
 final onboardingCompletedProvider = StateProvider<bool>((ref) {
   return ref.watch(localStorageProvider).onboardingCompleted;
-});
-
-// ===== Paywall Flow =====
-
-enum PaywallFlowStep { coins, removeAds, done }
-
-final paywallFlowProvider = StateProvider<PaywallFlowStep>((ref) {
-  return PaywallFlowStep.coins;
 });
 
 // ===== Coin Balance =====
@@ -362,7 +349,4 @@ final currentGameStateProvider = StateProvider<PuzzleGameState?>((ref) {
 final lastSessionResultProvider = StateProvider<SessionResult?>((ref) {
   return null;
 });
-
-/// Paywall'dan sonra açılacak level (5, 10, 15... tamamlanınca paywall gösterilir, devam edilince bu level oynanır).
-final nextLevelAfterPaywallProvider = StateProvider<int?>((ref) => null);
 

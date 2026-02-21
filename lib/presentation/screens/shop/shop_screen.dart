@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pocket_career_football_puzzle/core/localization/l10n.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/app_bar_parchment.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/under_maintenance_widget.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/coming_soon_widget.dart';
 
-/// Mağaza ekranı — şu an geliştirme aşamasında (bakımda).
-class ShopScreen extends ConsumerWidget {
+/// Mağaza ekranı — ileride yapılacak.
+class ShopScreen extends StatelessWidget {
   const ShopScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
@@ -21,9 +19,9 @@ class ShopScreen extends ConsumerWidget {
           ),
           Column(
             children: [
-              AppBarParchment(title: context.tr('shop_title')),
-              Expanded(
-                child: const UnderMaintenanceWidget(fullPage: true),
+              const AppBarParchment(title: 'Mağaza'),
+              const Expanded(
+                child: ComingSoonWidget(fullPage: true),
               ),
             ],
           ),

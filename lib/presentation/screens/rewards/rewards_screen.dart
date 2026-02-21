@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/app_bar_parchment.dart';
-import 'package:pocket_career_football_puzzle/presentation/widgets/under_maintenance_widget.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/coming_soon_widget.dart';
 
-/// Ödüller ekranı — bakımda.
-class RewardsScreen extends ConsumerWidget {
+/// Ödüller ekranı — ileride yapılacak.
+class RewardsScreen extends StatelessWidget {
   const RewardsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
@@ -21,8 +20,8 @@ class RewardsScreen extends ConsumerWidget {
           Column(
             children: [
               const AppBarParchment(title: 'Ödüller'),
-              Expanded(
-                child: const UnderMaintenanceWidget(fullPage: true),
+              const Expanded(
+                child: ComingSoonWidget(fullPage: true),
               ),
             ],
           ),

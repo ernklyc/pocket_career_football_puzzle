@@ -90,10 +90,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       backgroundColor: AppColors.background,
       body: Stack(
         children: [
-          // ═══════════════════ BACKGROUND IMAGE ═══════════════════
+          // ═══════════════════ BACKGROUND IMAGE (sadece ana sayfa) ═══════════════════
           Positioned.fill(
             child: Image.asset(
-              'assets/buttons/background.png',
+              'assets/image/stadyum_bg.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -274,7 +274,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         const SizedBox(width: 4),
                         const Spacer(),
 
-                        // Koleksiyon (Kupa Sergi, Bloklar, Başarımlar)
+                        // Koleksiyon
                         PressableScale(
                           onTap: () => context.push('/collection'),
                           child: ShadowedAsset(
@@ -284,8 +284,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           ),
                         ),
                         const SizedBox(width: 4),
-
-                        // Ödüller (bakımda)
+                        // Ödüller
                         PressableScale(
                           onTap: () => context.push('/rewards'),
                           child: ShadowedAsset(
@@ -295,7 +294,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           ),
                         ),
                         const SizedBox(width: 4),
-
                         // Günlük Giriş Ödülleri
                         PressableScale(
                           onTap: () {
@@ -431,7 +429,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             label: 'Sıralama',
                             onTap: () => context.push('/leaderboard'),
                           ),
-                        ), // Sıralama
+                        ),
                         // Oyna butonu (parşömen stil)
                         Expanded(
                           flex: 2,
@@ -569,8 +567,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               ),
                             ),
                           ),
-                        ), // Oyna
-
+                        ),
                         // Mağaza
                         Expanded(
                           child: _BottomBarImageButton(
@@ -592,9 +589,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   }
 }
 
-// ══════════════════════════════════════════════════════════════
-// Bottom Bar Image Button
-// ══════════════════════════════════════════════════════════════
+/// Alt bar: resim + etiket (Sıralama / Mağaza)
 class _BottomBarImageButton extends StatelessWidget {
   final String imagePath;
   final String label;
@@ -612,27 +607,31 @@ class _BottomBarImageButton extends StatelessWidget {
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ShadowedAsset(imagePath: imagePath, width: 48, height: 48),
-          const SizedBox(height: 4),
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Icon(
+                label == 'Sıralama' ? Icons.leaderboard : Icons.shop,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
           Text(
             label,
             style: TextStyle(
-              fontFamily: AppTheme.bodyFontFamily,
+              fontFamily: AppTheme.titleFontFamily,
               color: Colors.white,
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.w800,
-              shadows: [
-                Shadow(
-                  color: Colors.black.withValues(alpha: 0.7),
-                  offset: Offset(2, 2),
-                  blurRadius: 4,
-                ),
-                Shadow(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  offset: Offset(0, 0),
-                  blurRadius: 8,
-                ),
+              shadows: const [
+                Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 2),
               ],
             ),
           ),
@@ -865,13 +864,15 @@ class _CurrentLevelCard extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: HomeLayout.screenHorizontalPadding,
-            vertical: 20,
+          padding: EdgeInsets.fromLTRB(
+            HomeLayout.screenHorizontalPadding,
+            24, // üst biraz boşluk
+            HomeLayout.screenHorizontalPadding,
+            36, // alt daha fazla boşluk
           ),
           decoration: BoxDecoration(
             image: const DecorationImage(
-              image: AssetImage('assets/buttons/paper.png'),
+              image: AssetImage('assets/image/text_bg.png'),
               fit: BoxFit.fill,
             ),
             borderRadius: BorderRadius.circular(12),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocket_career_football_puzzle/core/theme/app_colors.dart';
 import 'package:pocket_career_football_puzzle/core/theme/app_theme.dart';
 import 'package:pocket_career_football_puzzle/presentation/providers/app_providers.dart';
 
@@ -45,39 +46,44 @@ class BootScreen extends ConsumerWidget {
 
     final isLoading = bootstrap.isLoading;
 
+    final size = MediaQuery.sizeOf(context);
+    final splashHeight = (size.shortestSide * 0.28).clamp(120.0, 200.0);
+    final textLogoHeight = (size.shortestSide * 0.16).clamp(70.0, 120.0);
+    final progressWidth = (size.width * 0.5).clamp(160.0, 240.0);
+    final spacingLogoText = size.height * 0.02;
+    final spacingTextProgress = size.height * 0.04;
+
     return Scaffold(
-      body: Stack(
-        children: [
-          // Arka plan — yeşil saha
-          Positioned.fill(
-            child: Image.asset(
-              'assets/league/5.png',
-              fit: BoxFit.cover,
+      backgroundColor: AppColors.fieldGreenDark,
+      body: SizedBox.expand(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/buttons/background.png',
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          // Ortada logo + text logo + progress
-          Center(
+            Center(
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Ortada logo (top + platform)
                   Image.asset(
                     'assets/logo/splash.png',
-                    height: 200,
+                    height: splashHeight,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 12),
-                  // Oyun ismi — text logo
+                  SizedBox(height: spacingLogoText),
                   Image.asset(
                     'assets/logo/text_logo.png',
-                    height: 120,
+                    height: textLogoHeight,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 32),
+                  SizedBox(height: spacingTextProgress),
                   SizedBox(
-                    width: 200,
+                    width: progressWidth,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -87,7 +93,7 @@ class BootScreen extends ConsumerWidget {
                             style: TextStyle(
                               fontFamily: AppTheme.bodyFontFamily,
                               color: Colors.white,
-                              fontSize: 12,
+                              fontSize: (size.width * 0.032).clamp(11.0, 14.0),
                               shadows: const [
                                 Shadow(
                                   color: Colors.black54,
@@ -109,8 +115,8 @@ class BootScreen extends ConsumerWidget {
                             child: isLoading
                                 ? LinearProgressIndicator(
                                     backgroundColor: Colors.transparent,
-                                    valueColor: const AlwaysStoppedAnimation<Color>(
-                                      Colors.white,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppColors.primaryLight,
                                     ),
                                   )
                                 : null,
@@ -124,6 +130,7 @@ class BootScreen extends ConsumerWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }

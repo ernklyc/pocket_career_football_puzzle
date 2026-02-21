@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/boot/boot_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/onboarding/onboarding_screen.dart';
-import 'package:pocket_career_football_puzzle/presentation/screens/paywall/paywall_coins_screen.dart';
-import 'package:pocket_career_football_puzzle/presentation/screens/paywall/paywall_remove_ads_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/career/career_setup_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/main/main_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/profile/profile_screen.dart';
-import 'package:pocket_career_football_puzzle/presentation/screens/leaderboard/leaderboard_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/play/play_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/pause/pause_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/results/score_summary_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/results/new_record_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/shop/shop_screen.dart';
+import 'package:pocket_career_football_puzzle/presentation/screens/leaderboard/leaderboard_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/collection/collection_screen.dart';
 import 'package:pocket_career_football_puzzle/presentation/screens/rewards/rewards_screen.dart';
 
@@ -41,23 +39,6 @@ class AppRouter {
             _buildPage(state, const OnboardingScreen(), 'onboarding'),
       ),
 
-      // Paywall - Coins
-      GoRoute(
-        path: '/paywall/coins',
-        pageBuilder: (context, state) =>
-            _buildPage(state, const PaywallCoinsScreen(), 'paywall_coins'),
-      ),
-
-      // Paywall - Remove Ads
-      GoRoute(
-        path: '/paywall/remove-ads',
-        pageBuilder: (context, state) => _buildPage(
-          state,
-          const PaywallRemoveAdsScreen(),
-          'paywall_remove_ads',
-        ),
-      ),
-
       // Career Setup (kısa form — ilk açılışta)
       GoRoute(
         path: '/career/setup',
@@ -82,14 +63,6 @@ class AppRouter {
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
             _buildPage(state, const ProfileScreen(), 'profile'),
-      ),
-
-      // Sıralama
-      GoRoute(
-        path: '/leaderboard',
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) =>
-            _buildPage(state, const LeaderboardScreen(), 'leaderboard'),
       ),
 
       // Play
@@ -147,37 +120,38 @@ class AppRouter {
         ),
       ),
 
-      // Shop
+      // Shop, Leaderboard, Collection, Rewards (ileride yapılacak)
       GoRoute(
         path: '/shop',
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
             _buildPage(state, const ShopScreen(), 'shop'),
       ),
-
-      // Collection
+      GoRoute(
+        path: '/leaderboard',
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) =>
+            _buildPage(state, const LeaderboardScreen(), 'leaderboard'),
+      ),
       GoRoute(
         path: '/collection',
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
             _buildPage(state, const CollectionScreen(), 'collection'),
       ),
-
-      // Rewards (Ödüller)
       GoRoute(
         path: '/rewards',
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
             _buildPage(state, const RewardsScreen(), 'rewards'),
       ),
-
-      // Achievements — Koleksiyon ekranına yönlendir (aynı içerik)
       GoRoute(
         path: '/achievements',
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) =>
             _buildPage(state, const CollectionScreen(), 'achievements'),
       ),
+
     ],
   );
 
