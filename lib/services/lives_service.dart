@@ -61,4 +61,11 @@ class LivesService {
     if (remaining <= Duration.zero) return Duration.zero;
     return remaining;
   }
+
+  /// DEBUG: Canları maksimuma doldur.
+  Future<void> fillLives() async {
+    await _storage.setLivesCount(maxLives);
+    await _storage.setLastLifeRegenTime(DateTime.now().millisecondsSinceEpoch);
+    AppLogger.info('DEBUG: Canlar dolduruldu → $maxLives');
+  }
 }

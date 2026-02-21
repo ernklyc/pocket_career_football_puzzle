@@ -9,10 +9,7 @@ class ProgressData {
   final Map<String, LevelProgress> levels;
   final int currentLevel; // 1-100 arası en yüksek açık level
 
-  const ProgressData({
-    this.levels = const {},
-    this.currentLevel = 1,
-  });
+  const ProgressData({this.levels = const {}, this.currentLevel = 1});
 
   ProgressData copyWith({
     Map<String, LevelProgress>? levels,
@@ -34,15 +31,17 @@ class ProgressData {
   }
 
   Map<String, dynamic> toJson() => {
-        'levels': levels.map((k, v) => MapEntry(k, v.toJson())),
-        'currentLevel': currentLevel,
-      };
+    'levels': levels.map((k, v) => MapEntry(k, v.toJson())),
+    'currentLevel': currentLevel,
+  };
 
   factory ProgressData.fromJson(Map<String, dynamic> json) {
     final levelsMap = json['levels'] as Map<String, dynamic>? ?? {};
     return ProgressData(
-      levels: levelsMap.map((k, v) =>
-          MapEntry(k, LevelProgress.fromJson(v as Map<String, dynamic>))),
+      levels: levelsMap.map(
+        (k, v) =>
+            MapEntry(k, LevelProgress.fromJson(v as Map<String, dynamic>)),
+      ),
       currentLevel: json['currentLevel'] as int? ?? 1,
     );
   }
@@ -53,6 +52,7 @@ class LevelProgress {
   final bool completed;
   final int bestScore;
   final int bestMoves;
+
   /// Futbol puanlama: 3 = Galibiyet, 1 = Beraberlik, 0 = Mağlubiyet.
   final int matchPoints;
 
@@ -71,18 +71,18 @@ class LevelProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'completed': completed,
-        'bestScore': bestScore,
-        'bestMoves': bestMoves,
-        'matchPoints': matchPoints,
-      };
+    'completed': completed,
+    'bestScore': bestScore,
+    'bestMoves': bestMoves,
+    'matchPoints': matchPoints,
+  };
 
   factory LevelProgress.fromJson(Map<String, dynamic> json) => LevelProgress(
-        completed: json['completed'] as bool? ?? false,
-        bestScore: json['bestScore'] as int? ?? 0,
-        bestMoves: json['bestMoves'] as int? ?? 0,
-        matchPoints: json['matchPoints'] as int? ?? json['stars'] as int? ?? 0,
-      );
+    completed: json['completed'] as bool? ?? false,
+    bestScore: json['bestScore'] as int? ?? 0,
+    bestMoves: json['bestMoves'] as int? ?? 0,
+    matchPoints: json['matchPoints'] as int? ?? json['stars'] as int? ?? 0,
+  );
 }
 
 /// İlerleme servisi — kariyer bazlı.
@@ -151,7 +151,8 @@ class ProgressService {
       bestScore: (existing != null && existing.bestScore > score)
           ? existing.bestScore
           : score,
-      bestMoves: (existing != null &&
+      bestMoves:
+          (existing != null &&
               existing.bestMoves > 0 &&
               existing.bestMoves < movesUsed)
           ? existing.bestMoves
@@ -215,5 +216,31 @@ class ProgressService {
     if (points >= 3) return MatchResult.win;
     if (points >= 1) return MatchResult.draw;
     return MatchResult.loss;
+  }
+
+  /// DEBUG: İstenen levele atla. Önceki tüm levelleri tamamlanmış işaretle.
+  Future<void> jumpToLevel(int targetLevel) async {
+    final progress = loadProgress();
+    final updatedLevels = Map<String, LevelProgress>.from(progress.levels);
+
+    // Önceki levelleri çözülmüş say
+    for (int i = 1; i < targetLevel; i++) {
+      final key = '$i';
+      if (updatedLevels[key] == null || !updatedLevels[key]!.completed) {
+        updatedLevels[key] = const LevelProgress(
+          completed: true,
+          bestScore: 100,
+          bestMoves: 3,
+          matchPoints: 3,
+        );
+      }
+    }
+
+    final updated = progress.copyWith(
+      levels: updatedLevels,
+      currentLevel: targetLevel,
+    );
+    await saveProgress(updated);
+    AppLogger.info('DEBUG: Level $targetLevel\'e atlandı');
   }
 }

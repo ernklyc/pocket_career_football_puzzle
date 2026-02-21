@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF--8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Dash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fb923c", // orange-400
+                        "secondary": "#60a5fa", // blue-400
+                        "background": "#f1f5f9", // slate-100
+                        "surface": "#ffffff",
+                        "text-primary": "#1e293b", // slate-800
+                        "text-secondary": "#475569", // slate-600
+                        "danger": "#f43f5e", // rose-500
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+      :root {
+        --font-sans: 'Inter', sans-serif;
+        --font-display: 'Space Grotesk', 'sans-serif';
+      }
+      
+      body {
+        overscroll-behavior: none;
+        background-color: #f1f5f9; /* slate-100 */
+        color: #1e293b; /* slate-800 */
+        font-family: var(--font-sans);
+        -webkit-tap-highlight-color: transparent; /* Disable tap highlight on mobile */
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-display);
+        font-weight: 700;
+      }
+
+      /* Keyframe animations */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      
+      @keyframes modal-fade-in-scale {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .modal-fade-in-scale {
+        animation: modal-fade-in-scale 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @keyframes shake {
+        10%, 90% { transform: translateX(-1px); }
+        20%, 80% { transform: translateX(2px); }
+        30%, 50%, 70% { transform: translateX(-4px); }
+        40%, 60% { transform: translateX(4px); }
+      }
+      .animate-shake {
+        animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+      }
+
+      @keyframes cell-place-effect {
+        0% { transform: scale(0.5); opacity: 0.5; filter: brightness(0.8); }
+        60% { transform: scale(1.1); opacity: 1; filter: brightness(1.3); }
+        100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+      }
+      .animate-cell-place {
+        animation: cell-place-effect 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes subtle-pulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15); }
+        50% { transform: scale(1.03); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+      }
+      .animate-subtle-pulse {
+        animation: subtle-pulse 2.5s ease-in-out infinite;
+      }
+
+      @keyframes slide-in-up-fade {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-slide-in-up-fade {
+        animation: slide-in-up-fade 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+      
+      @keyframes scale-in {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-scale-in {
+        animation: scale-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+      
+      @keyframes pulse-glow {
+        0% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); } /* blue-400 */
+        70%, 100% { box-shadow: 0 0 0 12px rgba(96, 165, 250, 0); }
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 2s infinite cubic-bezier(0.66, 0, 0, 1);
+      }
+
+      @keyframes score-popup {
+        from { transform: translateY(0) scale(1); opacity: 1; }
+        to { transform: translateY(-60px) scale(1.5); opacity: 0; }
+      }
+      .animate-score-popup {
+        animation: score-popup 1s ease-out forwards;
+      }
+
+      @keyframes log-entry-anim {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .animate-log-entry {
+        animation: log-entry-anim 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      /* New animations for visual feedback */
+      @keyframes particle-burst-anim {
+        0% { transform: scale(1); opacity: 1; }
+        100% {
+          transform: scale(0) translate(
+            calc((var(--random-x) - 0.5) * 150px),
+            calc((var(--random-y) - 0.5) * 150px)
+          );
+          opacity: 0;
+        }
+      }
+      .animate-particle-burst {
+        animation-name: particle-burst-anim;
+        animation-duration: 0.6s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+      }
+      
+      @keyframes flutter-fall {
+        0% { transform: translateY(0) translateX(0) rotate(var(--r-start)); opacity: 1; }
+        100% { transform: translateY(110vh) translateX(var(--x-end)) rotate(var(--r-end)); opacity: 0;}
+      }
+      .animate-confetti {
+        animation-name: flutter-fall;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
+      
+      @keyframes power-up-active-anim {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        50% { transform: scale(1.1); box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+      .animate-power-up-active {
+        animation: power-up-active-anim 0.5s ease-out forwards;
+      }
+      
+      .draggable-block-hover {
+        transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .draggable-block-hover:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+      }
+      
+      @keyframes level-complete-glow {
+        0%, 100% { box-shadow: 0 0 20px 5px rgba(96, 165, 250, 0.3), inset 0 0 10px rgba(96, 165, 250, 0.2); } /* blue-400 */
+        50% { box-shadow: 0 0 35px 10px rgba(96, 165, 250, 0.5), inset 0 0 15px rgba(96, 165, 250, 0.3); }
+      }
+      .animate-level-complete-glow {
+        animation: level-complete-glow 2.5s ease-in-out infinite;
+      }
+      
+      @keyframes float-up {
+        to {
+          transform: translateY(-110vh);
+        }
+      }
+      .animate-float-up {
+        animation-name: float-up;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      
+      @keyframes title-in {
+        from { opacity: 0; transform: translateY(20px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .animate-title-in {
+        animation: title-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @keyframes button-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-button-in {
+        animation: button-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+
+      /* Splash Screen Animations */
+      @keyframes splash-wrapper-fade-out {
+          0% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { opacity: 0; }
+      }
+      .animate-splash-wrapper-fade-out {
+          animation: splash-wrapper-fade-out 2.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+      }
+
+      @keyframes splash-grid {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .animate-splash-grid {
+        animation: splash-grid 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 0.3s;
+        opacity: 0;
+      }
+
+      @keyframes splash-dash {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .animate-splash-dash {
+        animation: splash-dash 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 0.3s;
+        opacity: 0;
+      }
+      
+      @keyframes splash-subtitle {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-splash-subtitle {
+          animation: splash-subtitle 0.6s ease-out forwards;
+          animation-delay: 0.8s;
+          opacity: 0;
+      }
+
+
+      .shadow-inner-cute {
+        box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+      }
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .scrollbar-hide {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://esm.run/@google/genai",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js",
+    "firebase/analytics": "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js",
+    "firebase/": "https://esm.sh/firebase@^12.6.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

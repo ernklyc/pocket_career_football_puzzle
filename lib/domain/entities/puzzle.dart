@@ -58,8 +58,7 @@ class GridPosition extends Equatable {
 
   const GridPosition(this.row, this.col);
 
-  GridPosition step(Direction dir) =>
-      GridPosition(row + dir.dy, col + dir.dx);
+  GridPosition step(Direction dir) => GridPosition(row + dir.dy, col + dir.dx);
 
   @override
   List<Object?> get props => [row, col];
@@ -148,22 +147,22 @@ class Block extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'row': row,
-        'col': col,
-        'width': width,
-        'height': height,
-        'type': type.name,
-      };
+    'id': id,
+    'row': row,
+    'col': col,
+    'width': width,
+    'height': height,
+    'type': type.name,
+  };
 
   factory Block.fromJson(Map<String, dynamic> json) => Block(
-        id: json['id'] as String,
-        row: json['row'] as int,
-        col: json['col'] as int,
-        width: json['width'] as int,
-        height: json['height'] as int,
-        type: BlockType.values.byName(json['type'] as String),
-      );
+    id: json['id'] as String,
+    row: json['row'] as int,
+    col: json['col'] as int,
+    width: json['width'] as int,
+    height: json['height'] as int,
+    type: BlockType.values.byName(json['type'] as String),
+  );
 
   @override
   List<Object?> get props => [id, row, col, width, height, type];
@@ -196,16 +195,18 @@ class PuzzleLevel extends Equatable {
   });
 
   /// Zorluk etiketi (config'den gelen tier varsa onu kullan, yoksa hesapla).
-  /// "Öğretici" → "Kolay" (game over ekranı ile uyumlu).
+  /// 'Öğretici' tier ilk levellerde kullanıcıya 'Kolay' gösterilir.
   String get difficultyLabel {
     if (difficultyTier != null) {
+      // Öğretici → UI'da "Kolay" göster (oyuncu yıldırılmasın)
       if (difficultyTier == 'Öğretici') return 'Kolay';
       return difficultyTier!;
     }
+    // difficultyTier yoksa optimalMoves'dan hesapla
     if (optimalMoves <= 3) return 'Kolay';
     if (optimalMoves <= 6) return 'Orta';
     if (optimalMoves <= 10) return 'Zor';
-    return 'Çok Zor';
+    return 'Efsane';
   }
 
   /// Bu levelde kullanılan blok şekillerinin özeti.
@@ -234,32 +235,32 @@ class PuzzleLevel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'levelNumber': levelNumber,
-        'season': season,
-        'gridRows': gridRows,
-        'gridCols': gridCols,
-        'maxMoves': maxMoves,
-        'optimalMoves': optimalMoves,
-        'initialBlocks': initialBlocks.map((b) => b.toJson()).toList(),
-        'exitRow': exitRow,
-        'exitCol': exitCol,
-        if (difficultyTier != null) 'difficultyTier': difficultyTier,
-      };
+    'levelNumber': levelNumber,
+    'season': season,
+    'gridRows': gridRows,
+    'gridCols': gridCols,
+    'maxMoves': maxMoves,
+    'optimalMoves': optimalMoves,
+    'initialBlocks': initialBlocks.map((b) => b.toJson()).toList(),
+    'exitRow': exitRow,
+    'exitCol': exitCol,
+    if (difficultyTier != null) 'difficultyTier': difficultyTier,
+  };
 
   factory PuzzleLevel.fromJson(Map<String, dynamic> json) => PuzzleLevel(
-        levelNumber: json['levelNumber'] as int,
-        season: json['season'] as int,
-        gridRows: json['gridRows'] as int,
-        gridCols: json['gridCols'] as int,
-        maxMoves: json['maxMoves'] as int,
-        optimalMoves: json['optimalMoves'] as int,
-        initialBlocks: (json['initialBlocks'] as List)
-            .map((b) => Block.fromJson(b as Map<String, dynamic>))
-            .toList(),
-        exitRow: json['exitRow'] as int,
-        exitCol: json['exitCol'] as int,
-        difficultyTier: json['difficultyTier'] as String?,
-      );
+    levelNumber: json['levelNumber'] as int,
+    season: json['season'] as int,
+    gridRows: json['gridRows'] as int,
+    gridCols: json['gridCols'] as int,
+    maxMoves: json['maxMoves'] as int,
+    optimalMoves: json['optimalMoves'] as int,
+    initialBlocks: (json['initialBlocks'] as List)
+        .map((b) => Block.fromJson(b as Map<String, dynamic>))
+        .toList(),
+    exitRow: json['exitRow'] as int,
+    exitCol: json['exitCol'] as int,
+    difficultyTier: json['difficultyTier'] as String?,
+  );
 
   @override
   List<Object?> get props => [levelNumber, season];
@@ -335,11 +336,17 @@ class PuzzleEngine {
 
   /// Occupancy grid oluştur: her hücrede hangi blok ID'si var (null = boş).
   static List<List<String?>> buildOccupancy(
-      List<Block> blocks, int rows, int cols) {
+    List<Block> blocks,
+    int rows,
+    int cols,
+  ) {
     final grid = List.generate(rows, (_) => List<String?>.filled(cols, null));
     for (final block in blocks) {
       for (final cell in block.occupiedCells) {
-        if (cell.row >= 0 && cell.row < rows && cell.col >= 0 && cell.col < cols) {
+        if (cell.row >= 0 &&
+            cell.row < rows &&
+            cell.col >= 0 &&
+            cell.col < cols) {
           grid[cell.row][cell.col] = block.id;
         }
       }
@@ -374,8 +381,10 @@ class PuzzleEngine {
 
       // Sınır kontrolü
       for (final cell in moved.occupiedCells) {
-        if (cell.row < 0 || cell.row >= gridRows ||
-            cell.col < 0 || cell.col >= gridCols) {
+        if (cell.row < 0 ||
+            cell.row >= gridRows ||
+            cell.col < 0 ||
+            cell.col >= gridCols) {
           return distance - 1;
         }
         // Başka blokla çarpışma (kendi hücreleri hariç)

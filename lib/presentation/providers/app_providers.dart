@@ -61,6 +61,12 @@ class LivesNotifier extends StateNotifier<int> {
     if (ok) state = _service.livesSync;
     return ok;
   }
+
+  /// DEBUG: Canları maksimuma doldur.
+  Future<void> fillLives() async {
+    await _service.fillLives();
+    state = _service.livesSync;
+  }
 }
 
 final sessionServiceProvider = Provider<SessionService>((ref) {
@@ -113,7 +119,9 @@ final onboardingCompletedProvider = StateProvider<bool>((ref) {
 
 // ===== Coin Balance =====
 
-final coinBalanceProvider = StateNotifierProvider<CoinBalanceNotifier, int>((ref) {
+final coinBalanceProvider = StateNotifierProvider<CoinBalanceNotifier, int>((
+  ref,
+) {
   return CoinBalanceNotifier(ref.watch(currencyServiceProvider));
 });
 
@@ -122,12 +130,28 @@ class CoinBalanceNotifier extends StateNotifier<int> {
 
   CoinBalanceNotifier(this._service) : super(_service.balance);
 
-  Future<void> addCoins(int amount, String reason, TransactionSource source) async {
-    state = await _service.addCoins(amount: amount, reason: reason, source: source);
+  Future<void> addCoins(
+    int amount,
+    String reason,
+    TransactionSource source,
+  ) async {
+    state = await _service.addCoins(
+      amount: amount,
+      reason: reason,
+      source: source,
+    );
   }
 
-  Future<bool> spendCoins(int amount, String reason, TransactionSource source) async {
-    final success = await _service.spendCoins(amount: amount, reason: reason, source: source);
+  Future<bool> spendCoins(
+    int amount,
+    String reason,
+    TransactionSource source,
+  ) async {
+    final success = await _service.spendCoins(
+      amount: amount,
+      reason: reason,
+      source: source,
+    );
     if (success) {
       state = _service.balance;
     }
@@ -147,8 +171,9 @@ final entitlementProvider = StateProvider<bool>((ref) {
 
 // ===== Settings =====
 
-final settingsProvider =
-    StateNotifierProvider<SettingsNotifier, GameSettings>((ref) {
+final settingsProvider = StateNotifierProvider<SettingsNotifier, GameSettings>((
+  ref,
+) {
   return SettingsNotifier(ref.watch(settingsServiceProvider));
 });
 
@@ -185,8 +210,7 @@ class SettingsNotifier extends StateNotifier<GameSettings> {
 
 // ===== Careers (tek kariyer) =====
 
-final careersProvider =
-    StateNotifierProvider<CareersNotifier, Career?>((ref) {
+final careersProvider = StateNotifierProvider<CareersNotifier, Career?>((ref) {
   return CareersNotifier(ref.watch(careerServiceProvider));
 });
 
@@ -256,8 +280,9 @@ final activeCareerProvider = Provider<Career?>((ref) {
 
 // ===== Progress (kariyer bazlı) =====
 
-final progressProvider =
-    StateNotifierProvider<ProgressNotifier, ProgressData>((ref) {
+final progressProvider = StateNotifierProvider<ProgressNotifier, ProgressData>((
+  ref,
+) {
   final service = ref.watch(progressServiceProvider);
   final career = ref.watch(activeCareerProvider);
   service.setActiveCareerId(career?.id);
@@ -292,14 +317,20 @@ class ProgressNotifier extends StateNotifier<ProgressData> {
   void refresh() {
     state = _service.loadProgress();
   }
+
+  /// DEBUG: İstenen levele atla (currentLevel güncelle, level kilitli olsa bile).
+  Future<void> jumpToLevel(int level) async {
+    await _service.jumpToLevel(level);
+    state = _service.loadProgress();
+  }
 }
 
 // ===== Active Cosmetics =====
 
 final activeCosmeticsProvider =
     StateNotifierProvider<ActiveCosmeticsNotifier, ActiveCosmetics>((ref) {
-  return ActiveCosmeticsNotifier(ref.watch(localStorageProvider));
-});
+      return ActiveCosmeticsNotifier(ref.watch(localStorageProvider));
+    });
 
 class ActiveCosmeticsNotifier extends StateNotifier<ActiveCosmetics> {
   final LocalStorage _storage;
@@ -315,17 +346,26 @@ class ActiveCosmeticsNotifier extends StateNotifier<ActiveCosmetics> {
   }
 
   Future<void> setBallSkin(String? skinId) async {
-    state = state.copyWith(activeBallSkin: skinId, clearBallSkin: skinId == null);
+    state = state.copyWith(
+      activeBallSkin: skinId,
+      clearBallSkin: skinId == null,
+    );
     await _save();
   }
 
   Future<void> setBlockTheme(String? themeId) async {
-    state = state.copyWith(activeBlockTheme: themeId, clearBlockTheme: themeId == null);
+    state = state.copyWith(
+      activeBlockTheme: themeId,
+      clearBlockTheme: themeId == null,
+    );
     await _save();
   }
 
   Future<void> setProfileBadge(String? badgeId) async {
-    state = state.copyWith(activeProfileBadge: badgeId, clearProfileBadge: badgeId == null);
+    state = state.copyWith(
+      activeProfileBadge: badgeId,
+      clearProfileBadge: badgeId == null,
+    );
     await _save();
   }
 
@@ -349,4 +389,3 @@ final currentGameStateProvider = StateProvider<PuzzleGameState?>((ref) {
 final lastSessionResultProvider = StateProvider<SessionResult?>((ref) {
   return null;
 });
-

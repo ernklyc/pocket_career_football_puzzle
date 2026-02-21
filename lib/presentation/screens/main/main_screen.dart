@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ import 'package:pocket_career_football_puzzle/services/lives_service.dart';
 import 'package:pocket_career_football_puzzle/services/progress_service.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/pressable_scale.dart';
 import 'package:pocket_career_football_puzzle/presentation/widgets/shadowed_asset.dart';
+import 'package:pocket_career_football_puzzle/presentation/widgets/dev_panel.dart';
 
 /// Yeni ana ekran — AppBar(profil, enerji, koleksiyon) + Orta(seviye bilgileri) + Alt(sıralama, oyna, mağaza)
 class MainScreen extends ConsumerStatefulWidget {
@@ -101,7 +103,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             children: [
               // ═══════════════════ APP BAR ═══════════════════
               Container(
-                constraints: const BoxConstraints(minHeight: 64),
                 decoration: BoxDecoration(
                   image: const DecorationImage(
                     image: AssetImage('assets/buttons/appbar.png'),
@@ -279,8 +280,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           onTap: () => context.push('/collection'),
                           child: ShadowedAsset(
                             imagePath: 'assets/buttons/collection.png',
-                            width: 48,
-                            height: 48,
+                            width:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
+                            height:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -289,8 +294,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           onTap: () => context.push('/rewards'),
                           child: ShadowedAsset(
                             imagePath: 'assets/buttons/trophy.png',
-                            width: 48,
-                            height: 48,
+                            width:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
+                            height:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -301,8 +310,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           },
                           child: ShadowedAsset(
                             imagePath: 'assets/image/gift.png',
-                            width: 48,
-                            height: 48,
+                            width:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
+                            height:
+                                (MediaQuery.sizeOf(context).shortestSide * 0.10)
+                                    .clamp(36.0, 48.0),
                           ),
                         ),
                       ],
@@ -457,113 +470,113 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                   },
                                 );
                               },
-                              child: Container(
-                                height: 60,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 10,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  image: const DecorationImage(
-                                    image: AssetImage(
-                                      'assets/buttons/play_button_v2.png',
+                              child: Builder(
+                                builder: (context) {
+                                  final sz = MediaQuery.sizeOf(context);
+                                  final btnH = (sz.height * 0.075).clamp(
+                                    52.0,
+                                    68.0,
+                                  );
+                                  final btnFs = (sz.width * 0.045).clamp(
+                                    15.0,
+                                    20.0,
+                                  );
+                                  final energyW = (sz.shortestSide * 0.055)
+                                      .clamp(18.0, 24.0);
+                                  return Container(
+                                    height: btnH,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
                                     ),
-                                    fit: BoxFit.fill,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(
-                                        alpha: 0.12,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: const DecorationImage(
+                                        image: AssetImage(
+                                          'assets/buttons/play_button_v2.png',
+                                        ),
+                                        fit: BoxFit.fill,
                                       ),
-                                      offset: const Offset(0, 1),
-                                      blurRadius: 2,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withValues(
+                                            alpha: 0.12,
+                                          ),
+                                          offset: const Offset(0, 1),
+                                          blurRadius: 2,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: 24,
-                                      child: Center(
-                                        child: Text(
-                                          isCurrentCompleted
-                                              ? 'TEKRAR'
-                                              : 'OYNA',
-                                          style: TextStyle(
-                                            fontFamily:
-                                                AppTheme.titleFontFamily,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w800,
-                                            color: AppColors.fieldGreenDark,
-                                            letterSpacing: 0.5,
-                                            height: 1.0,
-                                            shadows: const [
-                                              Shadow(
-                                                color: Colors.white,
-                                                offset: Offset(1, 1),
-                                                blurRadius: 0,
-                                              ),
-                                              Shadow(
-                                                color: Colors.white70,
-                                                offset: Offset(0, 1),
-                                                blurRadius: 0,
-                                              ),
-                                            ],
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            isCurrentCompleted
+                                                ? 'TEKRAR'
+                                                : 'OYNA',
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  AppTheme.titleFontFamily,
+                                              fontSize: btnFs,
+                                              fontWeight: FontWeight.w800,
+                                              color: AppColors.fieldGreenDark,
+                                              letterSpacing: 0.5,
+                                              height: 1.1,
+                                              shadows: const [
+                                                Shadow(
+                                                  color: Colors.white,
+                                                  offset: Offset(1, 1),
+                                                  blurRadius: 0,
+                                                ),
+                                                Shadow(
+                                                  color: Colors.white70,
+                                                  offset: Offset(0, 1),
+                                                  blurRadius: 0,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                        if (!isPremium &&
+                                            !isCurrentCompleted) ...[
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            '-1',
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  AppTheme.titleFontFamily,
+                                              fontSize: btnFs,
+                                              fontWeight: FontWeight.w800,
+                                              color: AppColors.fieldGreenDark,
+                                              height: 1.1,
+                                              shadows: const [
+                                                Shadow(
+                                                  color: Colors.white,
+                                                  offset: Offset(1, 1),
+                                                  blurRadius: 0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(width: 5),
+                                          SizedBox(
+                                            width: energyW,
+                                            height: energyW,
+                                            child: Image.asset(
+                                              'assets/buttons/energy.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ],
+                                      ],
                                     ),
-                                    if (!isPremium && !isCurrentCompleted) ...[
-                                      const SizedBox(width: 8),
-                                      SizedBox(
-                                        height: 24,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Center(
-                                              child: Text(
-                                                '-1',
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      AppTheme.titleFontFamily,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w800,
-                                                  color:
-                                                      AppColors.fieldGreenDark,
-                                                  height: 1.0,
-                                                  shadows: const [
-                                                    Shadow(
-                                                      color: Colors.white,
-                                                      offset: Offset(1, 1),
-                                                      blurRadius: 0,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(width: 5),
-                                            SizedBox(
-                                              width: 22,
-                                              height: 22,
-                                              child: Center(
-                                                child: Image.asset(
-                                                  'assets/buttons/energy.png',
-                                                  fit: BoxFit.contain,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ],
-                                ),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -583,6 +596,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               ),
             ],
           ),
+          // ═══════════════════ DEBUG PANEL (sadece kDebugMode) ═══════════════════
+          if (kDebugMode)
+            Positioned(
+              right: 12,
+              bottom: 120,
+              child: DevPanel(totalLevels: totalLevels),
+            ),
         ],
       ),
     );
@@ -603,6 +623,9 @@ class _BottomBarImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sz = MediaQuery.sizeOf(context);
+    final iconW = (sz.shortestSide * 0.09).clamp(32.0, 44.0);
+    final labelFs = (sz.width * 0.028).clamp(10.0, 13.0);
     return PressableScale(
       onTap: onTap,
       child: Column(
@@ -610,28 +633,32 @@ class _BottomBarImageButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: 40,
-            height: 40,
+            width: iconW,
+            height: iconW,
             child: Image.asset(
               imagePath,
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) => Icon(
                 label == 'Sıralama' ? Icons.leaderboard : Icons.shop,
                 color: Colors.white,
-                size: 28,
+                size: iconW * 0.7,
               ),
             ),
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: 3),
           Text(
             label,
             style: TextStyle(
               fontFamily: AppTheme.titleFontFamily,
               color: Colors.white,
-              fontSize: 12,
+              fontSize: labelFs,
               fontWeight: FontWeight.w800,
               shadows: const [
-                Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 2),
+                Shadow(
+                  color: Colors.black54,
+                  offset: Offset(1, 1),
+                  blurRadius: 2,
+                ),
               ],
             ),
           ),

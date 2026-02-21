@@ -4,7 +4,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 10,
+    "maxMoves": 14,
     "optimalMoves": 2,
     "initialBlocks": [
       {
@@ -41,7 +41,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 10,
+    "maxMoves": 13,
     "optimalMoves": 2,
     "initialBlocks": [
       {
@@ -78,7 +78,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 9,
+    "maxMoves": 12,
     "optimalMoves": 2,
     "initialBlocks": [
       {
@@ -115,7 +115,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 10,
+    "maxMoves": 12,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -153,20 +153,20 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Kolay"
+    "difficultyTier": "Öğretici"
   },
   {
     "levelNumber": 5,
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 12,
-    "optimalMoves": 5,
+    "maxMoves": 11,
+    "optimalMoves": 3,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 2,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -174,15 +174,15 @@
       {
         "id": "obs_0",
         "row": 2,
-        "col": 3,
+        "col": 2,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
-        "col": 4,
+        "row": 2,
+        "col": 3,
         "width": 1,
         "height": 2,
         "type": "obstacle"
@@ -190,7 +190,7 @@
       {
         "id": "obs_2",
         "row": 0,
-        "col": 0,
+        "col": 2,
         "width": 2,
         "height": 1,
         "type": "obstacle"
@@ -198,14 +198,14 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Kolay"
+    "difficultyTier": "Öğretici"
   },
   {
     "levelNumber": 6,
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 9,
+    "maxMoves": 10,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -243,14 +243,14 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Kolay"
   },
   {
     "levelNumber": 7,
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 12,
+    "maxMoves": 13,
     "optimalMoves": 6,
     "initialBlocks": [
       {
@@ -288,7 +288,7 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Kolay"
   },
   {
     "levelNumber": 8,
@@ -341,7 +341,7 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Zor"
+    "difficultyTier": "Orta"
   },
   {
     "levelNumber": 9,
@@ -394,14 +394,14 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 10,
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 11,
+    "maxMoves": 10,
     "optimalMoves": 6,
     "initialBlocks": [
       {
@@ -414,15 +414,15 @@
       },
       {
         "id": "obs_0",
-        "row": 0,
-        "col": 4,
+        "row": 2,
+        "col": 2,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 3,
+        "row": 2,
         "col": 1,
         "width": 1,
         "height": 2,
@@ -430,8 +430,8 @@
       },
       {
         "id": "obs_2",
-        "row": 3,
-        "col": 2,
+        "row": 0,
+        "col": 4,
         "width": 1,
         "height": 2,
         "type": "obstacle"
@@ -439,7 +439,15 @@
       {
         "id": "obs_3",
         "row": 3,
-        "col": 3,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 0,
+        "col": 1,
         "width": 1,
         "height": 2,
         "type": "obstacle"
@@ -454,7 +462,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 9,
+    "maxMoves": 11,
     "optimalMoves": 2,
     "initialBlocks": [
       {
@@ -499,8 +507,8 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 10,
-    "optimalMoves": 3,
+    "maxMoves": 13,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -512,25 +520,25 @@
       },
       {
         "id": "obs_0",
-        "row": 2,
+        "row": 1,
         "col": 2,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 2,
-        "col": 3,
-        "width": 2,
+        "row": 1,
+        "col": 1,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 4,
-        "col": 0,
-        "width": 2,
+        "row": 1,
+        "col": 3,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       }
@@ -550,33 +558,41 @@
       {
         "id": "ball",
         "row": 2,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
-        "col": 2,
+        "row": 0,
+        "col": 1,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 3,
+        "row": 3,
+        "col": 0,
         "width": 1,
-        "height": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
         "row": 1,
-        "col": 0,
+        "col": 3,
         "width": 2,
         "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 2,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -589,7 +605,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 11,
+    "maxMoves": 12,
     "optimalMoves": 5,
     "initialBlocks": [
       {
@@ -737,6 +753,14 @@
         "width": 1,
         "height": 2,
         "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 0,
+        "col": 0,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
       }
     ],
     "exitRow": 2,
@@ -748,35 +772,43 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 2,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
-        "col": 2,
+        "row": 0,
+        "col": 3,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
+        "row": 2,
         "col": 2,
-        "width": 2,
-        "height": 1,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
+        "row": 0,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
         "row": 4,
         "col": 0,
         "width": 1,
@@ -784,9 +816,9 @@
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
+        "id": "obs_4",
         "row": 1,
-        "col": 4,
+        "col": 2,
         "width": 1,
         "height": 1,
         "type": "obstacle"
@@ -801,7 +833,7 @@
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 11,
+    "maxMoves": 10,
     "optimalMoves": 6,
     "initialBlocks": [
       {
@@ -855,14 +887,14 @@
     ],
     "exitRow": 2,
     "exitCol": 5,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 19,
     "season": 1,
     "gridRows": 5,
     "gridCols": 5,
-    "maxMoves": 10,
+    "maxMoves": 9,
     "optimalMoves": 5,
     "initialBlocks": [
       {
@@ -912,6 +944,14 @@
         "width": 1,
         "height": 1,
         "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 2,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
       }
     ],
     "exitRow": 2,
@@ -924,7 +964,7 @@
     "gridRows": 5,
     "gridCols": 5,
     "maxMoves": 9,
-    "optimalMoves": 5,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
@@ -936,40 +976,48 @@
       },
       {
         "id": "obs_0",
-        "row": 1,
-        "col": 3,
+        "row": 0,
+        "col": 2,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 2,
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
         "col": 1,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
-        "row": 2,
-        "col": 2,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
         "id": "obs_3",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 2,
+        "row": 4,
+        "col": 1,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
         "row": 0,
-        "col": 4,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 3,
+        "col": 0,
         "width": 1,
         "height": 2,
         "type": "obstacle"
@@ -984,7 +1032,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 12,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -1029,7 +1077,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 11,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -1108,6 +1156,14 @@
         "width": 2,
         "height": 1,
         "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 4,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
       }
     ],
     "exitRow": 3,
@@ -1119,7 +1175,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 11,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -1178,14 +1234,14 @@
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
+        "row": 3,
         "col": 4,
         "width": 1,
         "height": 3,
@@ -1193,15 +1249,15 @@
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 5,
+        "row": 4,
+        "col": 3,
         "width": 1,
-        "height": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 3,
+        "row": 5,
         "col": 1,
         "width": 3,
         "height": 1,
@@ -1210,9 +1266,17 @@
       {
         "id": "obs_3",
         "row": 0,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
         "col": 2,
-        "width": 2,
-        "height": 1,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       }
     ],
@@ -1225,8 +1289,8 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
-    "optimalMoves": 4,
+    "maxMoves": 11,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -1238,33 +1302,41 @@
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 2,
+        "row": 3,
         "col": 1,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
+        "id": "obs_1",
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_2",
-        "row": 5,
-        "col": 2,
+        "row": 2,
+        "col": 1,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 0,
-        "col": 3,
-        "width": 3,
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 5,
+        "col": 0,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       }
@@ -1339,7 +1411,76 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 11,
+    "maxMoves": 10,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 5,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 0,
+        "col": 0,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 6,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 29,
+    "season": 1,
+    "gridRows": 6,
+    "gridCols": 6,
+    "maxMoves": 10,
     "optimalMoves": 6,
     "initialBlocks": [
       {
@@ -1352,101 +1493,48 @@
       },
       {
         "id": "obs_0",
-        "row": 1,
+        "row": 3,
         "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 2,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 6,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 29,
-    "season": 1,
-    "gridRows": 6,
-    "gridCols": 6,
-    "maxMoves": 10,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 0,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_4",
-        "row": 0,
+        "id": "obs_1",
+        "row": 5,
+        "col": 0,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 2,
         "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 3,
+        "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
@@ -1462,54 +1550,62 @@
     "gridRows": 6,
     "gridCols": 6,
     "maxMoves": 9,
-    "optimalMoves": 5,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
-        "col": 2,
+        "row": 2,
+        "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 4,
-        "col": 1,
+        "row": 0,
+        "col": 5,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
+        "id": "obs_2",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_3",
         "row": 0,
-        "col": 4,
-        "width": 2,
+        "col": 2,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 2,
+        "row": 3,
         "col": 3,
         "width": 1,
-        "height": 3,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 1,
+        "col": 1,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -1522,13 +1618,13 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
-    "optimalMoves": 3,
+    "maxMoves": 12,
+    "optimalMoves": 4,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -1544,25 +1640,17 @@
       {
         "id": "obs_1",
         "row": 0,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 1,
+        "col": 2,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
+        "id": "obs_2",
         "row": 2,
-        "col": 3,
-        "width": 2,
-        "height": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       }
     ],
@@ -1575,7 +1663,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 9,
+    "maxMoves": 10,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -1628,7 +1716,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 11,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -1742,13 +1830,13 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 12,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -1756,32 +1844,32 @@
       {
         "id": "obs_0",
         "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 3,
         "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
-        "id": "obs_1",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
         "id": "obs_3",
-        "row": 0,
+        "row": 3,
         "col": 1,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       },
@@ -1789,7 +1877,7 @@
         "id": "obs_4",
         "row": 1,
         "col": 2,
-        "width": 2,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       }
@@ -1933,75 +2021,6 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 0,
-        "col": 0,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 2,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 0,
-        "col": 4,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 1,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 6,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 39,
-    "season": 1,
-    "gridRows": 6,
-    "gridCols": 6,
     "maxMoves": 10,
     "optimalMoves": 6,
     "initialBlocks": [
@@ -2016,47 +2035,124 @@
       {
         "id": "obs_0",
         "row": 3,
-        "col": 2,
+        "col": 1,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 3,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
+        "row": 2,
         "col": 4,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
+        "id": "obs_2",
         "row": 0,
         "col": 2,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 3,
+        "col": 3,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 2,
-        "col": 0,
-        "width": 2,
-        "height": 1,
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 2,
+        "row": 0,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 6,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 39,
+    "season": 1,
+    "gridRows": 6,
+    "gridCols": 6,
+    "maxMoves": 11,
+    "optimalMoves": 7,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
         "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 2,
+        "col": 0,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 1,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 3,
+        "col": 2,
         "width": 1,
         "height": 3,
         "type": "obstacle"
@@ -2071,13 +2167,13 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 9,
     "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 2,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -2085,14 +2181,14 @@
       {
         "id": "obs_0",
         "row": 3,
-        "col": 4,
+        "col": 5,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 2,
+        "row": 1,
         "col": 1,
         "width": 3,
         "height": 1,
@@ -2100,34 +2196,42 @@
       },
       {
         "id": "obs_2",
-        "row": 2,
-        "col": 5,
+        "row": 3,
+        "col": 1,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 3,
+        "row": 2,
+        "col": 1,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 0,
-        "col": 1,
+        "row": 4,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 1,
+        "col": 5,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_5",
+        "id": "obs_6",
         "row": 2,
-        "col": 0,
+        "col": 4,
         "width": 1,
-        "height": 1,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -2140,7 +2244,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 12,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -2174,14 +2278,6 @@
         "width": 1,
         "height": 1,
         "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
       }
     ],
     "exitRow": 3,
@@ -2193,7 +2289,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 12,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -2246,47 +2342,47 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 9,
-    "optimalMoves": 3,
+    "maxMoves": 12,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 2,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
+        "row": 2,
         "col": 3,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 2,
+        "row": 3,
         "col": 1,
-        "width": 1,
+        "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
         "row": 3,
-        "col": 4,
-        "width": 2,
-        "height": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
         "row": 0,
         "col": 4,
-        "width": 1,
-        "height": 3,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -2360,7 +2456,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 11,
     "optimalMoves": 5,
     "initialBlocks": [
       {
@@ -2471,6 +2567,14 @@
         "width": 1,
         "height": 3,
         "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 5,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
       }
     ],
     "exitRow": 3,
@@ -2544,79 +2648,10 @@
     ],
     "exitRow": 3,
     "exitCol": 6,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 48,
-    "season": 1,
-    "gridRows": 6,
-    "gridCols": 6,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 4,
-        "col": 2,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 1,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 0,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 1,
-        "col": 4,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 6,
     "difficultyTier": "Zor"
   },
   {
-    "levelNumber": 49,
+    "levelNumber": 48,
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
@@ -2634,6 +2669,83 @@
       {
         "id": "obs_0",
         "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 3,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
+        "col": 0,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 6,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 49,
+    "season": 1,
+    "gridRows": 6,
+    "gridCols": 6,
+    "maxMoves": 10,
+    "optimalMoves": 7,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
         "col": 4,
         "width": 1,
         "height": 3,
@@ -2649,33 +2761,41 @@
       },
       {
         "id": "obs_2",
-        "row": 5,
+        "row": 0,
         "col": 0,
-        "width": 1,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 3,
+        "row": 5,
         "col": 3,
         "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 1,
-        "col": 4,
-        "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_5",
-        "row": 3,
+        "id": "obs_4",
+        "row": 4,
         "col": 0,
-        "width": 1,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 0,
+        "width": 2,
         "height": 2,
         "type": "obstacle"
       }
@@ -2689,7 +2809,7 @@
     "season": 1,
     "gridRows": 6,
     "gridCols": 6,
-    "maxMoves": 10,
+    "maxMoves": 8,
     "optimalMoves": 6,
     "initialBlocks": [
       {
@@ -2763,11 +2883,11 @@
   },
   {
     "levelNumber": 51,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 10,
-    "optimalMoves": 3,
+    "maxMoves": 11,
+    "optimalMoves": 2,
     "initialBlocks": [
       {
         "id": "ball",
@@ -2800,14 +2920,6 @@
         "width": 2,
         "height": 2,
         "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
       }
     ],
     "exitRow": 3,
@@ -2816,11 +2928,11 @@
   },
   {
     "levelNumber": 52,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 2,
+    "maxMoves": 11,
+    "optimalMoves": 3,
     "initialBlocks": [
       {
         "id": "ball",
@@ -2832,8 +2944,8 @@
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 6,
+        "row": 3,
+        "col": 3,
         "width": 1,
         "height": 3,
         "type": "obstacle"
@@ -2842,22 +2954,22 @@
         "id": "obs_1",
         "row": 4,
         "col": 5,
-        "width": 1,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 0,
-        "col": 1,
-        "width": 2,
+        "row": 2,
+        "col": 2,
+        "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 2,
-        "col": 1,
+        "row": 6,
+        "col": 2,
         "width": 1,
         "height": 1,
         "type": "obstacle"
@@ -2869,10 +2981,10 @@
   },
   {
     "levelNumber": 53,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 11,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -2922,16 +3034,16 @@
   },
   {
     "levelNumber": 54,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 3,
+    "maxMoves": 11,
+    "optimalMoves": 4,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 2,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -2939,33 +3051,41 @@
       {
         "id": "obs_0",
         "row": 3,
-        "col": 5,
+        "col": 6,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 3,
+        "row": 2,
+        "col": 4,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 3,
+        "row": 0,
+        "col": 3,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
         "row": 2,
+        "col": 1,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 6,
         "col": 0,
         "width": 1,
-        "height": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -2975,16 +3095,16 @@
   },
   {
     "levelNumber": 55,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 3,
+    "maxMoves": 10,
+    "optimalMoves": 4,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 2,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -2992,41 +3112,41 @@
       {
         "id": "obs_0",
         "row": 2,
-        "col": 3,
+        "col": 6,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
-        "col": 4,
+        "row": 3,
+        "col": 3,
         "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 0,
-        "col": 2,
+        "row": 1,
+        "col": 1,
         "width": 2,
-        "height": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 4,
-        "col": 5,
+        "row": 3,
+        "col": 2,
         "width": 1,
-        "height": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
         "row": 1,
-        "col": 6,
+        "col": 0,
         "width": 1,
-        "height": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -3036,16 +3156,16 @@
   },
   {
     "levelNumber": 56,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 3,
+    "maxMoves": 11,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 2,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -3053,232 +3173,49 @@
       {
         "id": "obs_0",
         "row": 2,
-        "col": 6,
+        "col": 3,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
-        "col": 4,
-        "width": 1,
+        "row": 5,
+        "col": 3,
+        "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
         "row": 2,
-        "col": 1,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 5,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 57,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 2,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 6,
-        "col": 4,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 5,
-        "col": 2,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 3,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 58,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 1,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 5,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 5,
-        "col": 1,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
         "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 59,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
       },
       {
-        "id": "obs_0",
+        "id": "obs_3",
         "row": 3,
-        "col": 5,
+        "col": 1,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
-        "id": "obs_1",
-        "row": 4,
-        "col": 3,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 2,
-        "col": 3,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
         "id": "obs_4",
-        "row": 0,
-        "col": 3,
+        "row": 3,
+        "col": 2,
         "width": 1,
-        "height": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 5,
-        "col": 6,
-        "width": 1,
-        "height": 2,
+        "row": 6,
+        "col": 5,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -3287,11 +3224,11 @@
     "difficultyTier": "Zor"
   },
   {
-    "levelNumber": 60,
-    "season": 1,
+    "levelNumber": 57,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 10,
     "optimalMoves": 5,
     "initialBlocks": [
       {
@@ -3305,23 +3242,23 @@
       {
         "id": "obs_0",
         "row": 3,
-        "col": 1,
+        "col": 4,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 5,
-        "col": 5,
-        "width": 1,
-        "height": 2,
+        "row": 3,
+        "col": 1,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
         "row": 4,
-        "col": 4,
+        "col": 1,
         "width": 3,
         "height": 1,
         "type": "obstacle"
@@ -3338,14 +3275,253 @@
         "id": "obs_4",
         "row": 1,
         "col": 5,
-        "width": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 6,
+        "col": 3,
+        "width": 3,
         "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 58,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 10,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 1,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 5,
+        "col": 1,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 3,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 3,
+        "col": 4,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
         "row": 2,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 59,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 10,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 2,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
+        "col": 5,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
         "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 4,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 5,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 60,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 7,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
+        "col": 0,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 5,
+        "col": 5,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 5,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 5,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 0,
+        "col": 2,
         "width": 1,
         "height": 2,
         "type": "obstacle"
@@ -3357,10 +3533,10 @@
   },
   {
     "levelNumber": 61,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 11,
     "optimalMoves": 3,
     "initialBlocks": [
       {
@@ -3410,56 +3586,56 @@
   },
   {
     "levelNumber": 62,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 3,
+    "maxMoves": 11,
+    "optimalMoves": 4,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 1,
-        "col": 6,
+        "row": 2,
+        "col": 5,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
         "row": 1,
-        "col": 5,
-        "width": 1,
+        "col": 3,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 3,
-        "col": 2,
+        "row": 5,
+        "col": 4,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 4,
-        "col": 0,
+        "row": 3,
+        "col": 3,
         "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 6,
-        "col": 4,
+        "row": 2,
+        "col": 0,
         "width": 2,
         "height": 1,
         "type": "obstacle"
@@ -3471,10 +3647,10 @@
   },
   {
     "levelNumber": 63,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 10,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -3532,30 +3708,54 @@
   },
   {
     "levelNumber": 64,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 11,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 2,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 6,
+        "row": 2,
+        "col": 3,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
+        "row": 2,
+        "col": 1,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 6,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
         "row": 3,
         "col": 4,
         "width": 2,
@@ -3563,25 +3763,9 @@
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
+        "id": "obs_5",
         "row": 1,
-        "col": 5,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 5,
-        "col": 1,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 3,
+        "col": 6,
         "width": 1,
         "height": 3,
         "type": "obstacle"
@@ -3593,11 +3777,11 @@
   },
   {
     "levelNumber": 65,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -3617,34 +3801,42 @@
       },
       {
         "id": "obs_1",
-        "row": 4,
-        "col": 1,
-        "width": 2,
-        "height": 2,
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 0,
-        "col": 4,
-        "width": 2,
+        "row": 2,
+        "col": 0,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 1,
-        "col": 5,
+        "row": 5,
+        "col": 3,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 2,
+        "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
-        "id": "obs_4",
-        "row": 1,
-        "col": 3,
-        "width": 1,
-        "height": 3,
+        "id": "obs_5",
+        "row": 0,
+        "col": 4,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -3654,80 +3846,11 @@
   },
   {
     "levelNumber": 66,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 5,
-        "col": 0,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 0,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 1,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 4,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 5,
-        "col": 3,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 67,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -3740,21 +3863,13 @@
       {
         "id": "obs_0",
         "row": 2,
-        "col": 3,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 1,
         "col": 4,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
+        "id": "obs_1",
         "row": 2,
         "col": 6,
         "width": 1,
@@ -3762,11 +3877,19 @@
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
-        "row": 0,
-        "col": 1,
+        "id": "obs_2",
+        "row": 2,
+        "col": 3,
         "width": 1,
-        "height": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 4,
+        "col": 0,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
@@ -3774,15 +3897,100 @@
         "row": 4,
         "col": 3,
         "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 1,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 1,
+        "col": 0,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 67,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 11,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 4,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 2,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 3,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 3,
+        "row": 4,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 0,
         "col": 2,
         "width": 1,
-        "height": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -3792,55 +4000,55 @@
   },
   {
     "levelNumber": 68,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 2,
+        "row": 2,
+        "col": 4,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 4,
+        "row": 2,
+        "col": 5,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 5,
+        "row": 0,
         "col": 4,
-        "width": 3,
-        "height": 1,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 1,
-        "col": 6,
-        "width": 1,
+        "row": 5,
+        "col": 3,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 4,
+        "row": 3,
         "col": 3,
         "width": 1,
         "height": 2,
@@ -3848,6 +4056,14 @@
       },
       {
         "id": "obs_5",
+        "row": 3,
+        "col": 1,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
         "row": 3,
         "col": 5,
         "width": 2,
@@ -3857,70 +4073,86 @@
     ],
     "exitRow": 3,
     "exitCol": 7,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 69,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
+    "maxMoves": 10,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 5,
+        "row": 3,
+        "col": 6,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
         "row": 2,
-        "col": 2,
-        "width": 1,
-        "height": 2,
+        "col": 5,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 1,
-        "col": 2,
+        "row": 6,
+        "col": 1,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 5,
+        "row": 2,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 3,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 4,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 1,
         "col": 0,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_4",
-        "row": 2,
-        "col": 3,
-        "width": 1,
+        "id": "obs_7",
+        "row": 6,
+        "col": 4,
+        "width": 3,
         "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -3930,11 +4162,11 @@
   },
   {
     "levelNumber": 70,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
+    "maxMoves": 8,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
@@ -3946,49 +4178,65 @@
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 3,
+        "row": 2,
+        "col": 2,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
+        "row": 5,
         "col": 5,
-        "width": 1,
-        "height": 3,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
         "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 2,
         "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 4,
-        "col": 0,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_5",
-        "row": 2,
+        "id": "obs_3",
+        "row": 3,
         "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 1,
         "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 5,
+        "col": 1,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 2,
+        "col": 0,
+        "width": 2,
         "height": 1,
         "type": "obstacle"
       }
@@ -3999,16 +4247,16 @@
   },
   {
     "levelNumber": 71,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 11,
-    "optimalMoves": 5,
+    "optimalMoves": 3,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -4018,39 +4266,31 @@
         "row": 3,
         "col": 4,
         "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 2,
-        "col": 1,
-        "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
+        "id": "obs_1",
+        "row": 1,
+        "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_2",
-        "row": 3,
-        "col": 6,
+        "row": 1,
+        "col": 0,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 2,
-        "col": 2,
+        "row": 3,
+        "col": 6,
         "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 0,
-        "col": 0,
-        "width": 2,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       }
     ],
@@ -4060,10 +4300,10 @@
   },
   {
     "levelNumber": 72,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 11,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -4121,39 +4361,39 @@
   },
   {
     "levelNumber": 73,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 11,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 1,
+        "row": 1,
+        "col": 6,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 3,
-        "col": 2,
+        "row": 5,
+        "col": 6,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 1,
+        "row": 4,
         "col": 1,
         "width": 2,
         "height": 2,
@@ -4162,17 +4402,25 @@
       {
         "id": "obs_3",
         "row": 3,
-        "col": 5,
-        "width": 1,
-        "height": 2,
+        "col": 4,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 5,
-        "col": 4,
-        "width": 3,
-        "height": 1,
+        "row": 2,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -4182,7 +4430,7 @@
   },
   {
     "levelNumber": 74,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 10,
@@ -4251,76 +4499,84 @@
   },
   {
     "levelNumber": 75,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 2,
+        "row": 1,
         "col": 3,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 5,
-        "col": 3,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 2,
+        "row": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
+        "id": "obs_2",
+        "row": 4,
+        "col": 0,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_3",
-        "row": 0,
-        "col": 3,
+        "row": 5,
+        "col": 5,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 4,
-        "col": 0,
-        "width": 2,
+        "row": 3,
+        "col": 5,
+        "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
         "row": 1,
-        "col": 4,
-        "width": 2,
+        "col": 5,
+        "width": 1,
         "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 3,
+        "col": 4,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       }
     ],
     "exitRow": 3,
     "exitCol": 7,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 76,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
@@ -4336,10 +4592,10 @@
       },
       {
         "id": "obs_0",
-        "row": 2,
+        "row": 3,
         "col": 4,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
@@ -4347,39 +4603,47 @@
         "row": 0,
         "col": 5,
         "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 4,
-        "col": 5,
-        "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
-        "row": 1,
-        "col": 6,
+        "id": "obs_2",
+        "row": 2,
+        "col": 5,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
+        "id": "obs_3",
+        "row": 1,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_4",
         "row": 1,
-        "col": 1,
-        "width": 1,
-        "height": 1,
+        "col": 0,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 2,
-        "col": 2,
+        "row": 0,
+        "col": 4,
         "width": 1,
         "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 5,
+        "col": 5,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -4389,11 +4653,11 @@
   },
   {
     "levelNumber": 77,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
+    "maxMoves": 10,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
@@ -4408,47 +4672,63 @@
         "row": 3,
         "col": 1,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
-        "col": 6,
-        "width": 1,
+        "row": 3,
+        "col": 2,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 4,
-        "col": 5,
+        "row": 2,
+        "col": 0,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 0,
         "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
         "id": "obs_4",
-        "row": 3,
-        "col": 3,
+        "row": 1,
+        "col": 6,
         "width": 1,
-        "height": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 2,
-        "col": 6,
-        "width": 1,
+        "row": 0,
+        "col": 4,
+        "width": 2,
         "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 4,
+        "col": 4,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 5,
+        "col": 0,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -4458,71 +4738,79 @@
   },
   {
     "levelNumber": 78,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 8,
     "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 0,
+        "col": 1,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 4,
+        "row": 3,
+        "col": 5,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 4,
+        "row": 6,
+        "col": 0,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
         "col": 2,
         "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
-        "row": 0,
-        "col": 4,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 6,
-        "col": 3,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 0,
-        "col": 1,
+        "id": "obs_6",
+        "row": 5,
+        "col": 2,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_6",
-        "row": 3,
+        "id": "obs_7",
+        "row": 4,
         "col": 2,
         "width": 1,
         "height": 1,
@@ -4531,20 +4819,20 @@
     ],
     "exitRow": 3,
     "exitCol": 7,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 79,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
-    "optimalMoves": 5,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
-        "col": 2,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -4559,49 +4847,65 @@
       },
       {
         "id": "obs_1",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 3,
+        "row": 2,
+        "col": 1,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 4,
-        "col": 1,
+        "row": 3,
+        "col": 5,
         "width": 1,
-        "height": 1,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 1,
-        "col": 5,
+        "row": 2,
+        "col": 4,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 3,
-        "col": 4,
-        "width": 1,
-        "height": 1,
+        "row": 0,
+        "col": 3,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 1,
-        "col": 2,
+        "row": 6,
+        "col": 1,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_6",
-        "row": 0,
+        "row": 4,
         "col": 4,
-        "width": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 2,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 4,
+        "col": 0,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       }
@@ -4612,11 +4916,11 @@
   },
   {
     "levelNumber": 80,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 8,
-    "optimalMoves": 5,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
@@ -4628,57 +4932,73 @@
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 6,
+        "row": 2,
+        "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 5,
-        "col": 1,
-        "width": 2,
-        "height": 2,
+        "row": 1,
+        "col": 3,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 1,
+        "row": 2,
         "col": 0,
-        "width": 2,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 2,
+        "row": 5,
         "col": 3,
-        "width": 1,
+        "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
         "row": 1,
-        "col": 3,
-        "width": 2,
+        "col": 0,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 1,
+        "row": 3,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 5,
         "col": 5,
         "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
-        "id": "obs_6",
-        "row": 2,
-        "col": 1,
-        "width": 2,
+        "id": "obs_8",
+        "row": 4,
+        "col": 0,
+        "width": 1,
         "height": 2,
         "type": "obstacle"
       }
@@ -4689,10 +5009,10 @@
   },
   {
     "levelNumber": 81,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
+    "maxMoves": 11,
     "optimalMoves": 4,
     "initialBlocks": [
       {
@@ -4750,72 +5070,11 @@
   },
   {
     "levelNumber": 82,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 5,
-        "col": 2,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 2,
-        "col": 3,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 83,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
+    "maxMoves": 11,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -4828,46 +5087,115 @@
       {
         "id": "obs_0",
         "row": 3,
-        "col": 6,
+        "col": 2,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 0,
-        "col": 4,
-        "width": 1,
-        "height": 3,
+        "row": 3,
+        "col": 3,
+        "width": 2,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 0,
-        "col": 3,
+        "row": 2,
+        "col": 2,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 6,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
-        "id": "obs_3",
+        "id": "obs_4",
         "row": 5,
         "col": 1,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 2,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
+        "row": 6,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Orta"
+  },
+  {
+    "levelNumber": 83,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 10,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
         "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 2,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 4,
+        "col": 1,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 3,
+        "col": 6,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 1,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 3,
         "col": 5,
         "width": 1,
         "height": 3,
@@ -4880,11 +5208,11 @@
   },
   {
     "levelNumber": 84,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 4,
+    "maxMoves": 10,
+    "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
@@ -4896,49 +5224,57 @@
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 4,
+        "row": 2,
+        "col": 6,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 3,
+        "row": 4,
         "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 4,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 5,
-        "col": 4,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 0,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_5",
+        "id": "obs_2",
         "row": 2,
-        "col": 4,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 1,
         "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 3,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 4,
+        "col": 6,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       }
@@ -4949,7 +5285,7 @@
   },
   {
     "levelNumber": 85,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
@@ -4958,67 +5294,75 @@
       {
         "id": "ball",
         "row": 3,
-        "col": 1,
+        "col": 0,
         "width": 1,
         "height": 1,
         "type": "ball"
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 2,
+        "row": 1,
+        "col": 6,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
-        "col": 2,
+        "row": 4,
+        "col": 4,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 3,
+        "row": 2,
         "col": 5,
-        "width": 2,
-        "height": 1,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
-        "row": 2,
-        "col": 3,
+        "row": 5,
+        "col": 6,
         "width": 1,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 4,
-        "col": 0,
+        "row": 5,
+        "col": 3,
         "width": 1,
-        "height": 3,
+        "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 5,
+        "row": 3,
         "col": 2,
-        "width": 1,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 2,
+        "width": 3,
         "height": 1,
         "type": "obstacle"
       }
     ],
     "exitRow": 3,
     "exitCol": 7,
-    "difficultyTier": "Orta"
+    "difficultyTier": "Zor"
   },
   {
     "levelNumber": 86,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
@@ -5034,50 +5378,66 @@
       },
       {
         "id": "obs_0",
-        "row": 3,
-        "col": 4,
+        "row": 2,
+        "col": 5,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 1,
+        "row": 4,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 3,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 4,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 6,
+        "col": 6,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
         "col": 1,
         "width": 3,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
-        "row": 5,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
+        "id": "obs_6",
         "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 4,
-        "col": 1,
+        "col": 6,
         "width": 1,
         "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -5087,11 +5447,11 @@
   },
   {
     "levelNumber": 87,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
-    "optimalMoves": 5,
+    "optimalMoves": 6,
     "initialBlocks": [
       {
         "id": "ball",
@@ -5103,58 +5463,66 @@
       },
       {
         "id": "obs_0",
-        "row": 2,
-        "col": 2,
+        "row": 3,
+        "col": 1,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 4,
-        "col": 0,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 6,
-        "col": 4,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 6,
+        "row": 0,
         "col": 1,
         "width": 1,
         "height": 1,
         "type": "obstacle"
       },
       {
+        "id": "obs_2",
+        "row": 0,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
         "id": "obs_5",
-        "row": 3,
-        "col": 4,
+        "row": 2,
+        "col": 0,
         "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_6",
-        "row": 1,
-        "col": 6,
+        "row": 2,
+        "col": 5,
         "width": 1,
-        "height": 3,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 4,
+        "col": 2,
+        "width": 3,
+        "height": 1,
         "type": "obstacle"
       }
     ],
@@ -5164,798 +5532,7 @@
   },
   {
     "levelNumber": 88,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 5,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 2,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 3,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 0,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 2,
-        "col": 1,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 5,
-        "col": 3,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 89,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 2,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 2,
-        "col": 3,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 5,
-        "col": 1,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 4,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 90,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 1,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 6,
-        "col": 2,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 1,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Boss"
-  },
-  {
-    "levelNumber": 91,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 1,
-        "col": 1,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 2,
-        "col": 2,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 4,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 5,
-        "col": 0,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Kolay"
-  },
-  {
-    "levelNumber": 92,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 4,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 2,
-        "col": 3,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 6,
-        "col": 4,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 1,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 5,
-        "col": 0,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 93,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 2,
-        "col": 5,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 5,
-        "col": 2,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 3,
-        "col": 4,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 0,
-        "col": 5,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 94,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 1,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 1,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 4,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 95,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 3,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 3,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 5,
-        "col": 1,
-        "width": 3,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 2,
-        "col": 1,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 0,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 96,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 9,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 3,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 0,
-        "col": 2,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 6,
-        "col": 4,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 5,
-        "col": 3,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 0,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Orta"
-  },
-  {
-    "levelNumber": 97,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 2,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 5,
-        "col": 2,
-        "width": 2,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 0,
-        "col": 0,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 1,
-        "col": 3,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 2,
-        "col": 4,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 0,
-        "col": 6,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 98,
-    "season": 1,
-    "gridRows": 7,
-    "gridCols": 7,
-    "maxMoves": 8,
-    "optimalMoves": 5,
-    "initialBlocks": [
-      {
-        "id": "ball",
-        "row": 3,
-        "col": 0,
-        "width": 1,
-        "height": 1,
-        "type": "ball"
-      },
-      {
-        "id": "obs_0",
-        "row": 3,
-        "col": 2,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_1",
-        "row": 1,
-        "col": 5,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_2",
-        "row": 3,
-        "col": 1,
-        "width": 1,
-        "height": 2,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_3",
-        "row": 2,
-        "col": 6,
-        "width": 1,
-        "height": 3,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_4",
-        "row": 1,
-        "col": 2,
-        "width": 2,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_5",
-        "row": 0,
-        "col": 2,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      },
-      {
-        "id": "obs_6",
-        "row": 3,
-        "col": 5,
-        "width": 1,
-        "height": 1,
-        "type": "obstacle"
-      }
-    ],
-    "exitRow": 3,
-    "exitCol": 7,
-    "difficultyTier": "Zor"
-  },
-  {
-    "levelNumber": 99,
-    "season": 1,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 9,
@@ -5972,39 +5549,39 @@
       {
         "id": "obs_0",
         "row": 2,
-        "col": 6,
+        "col": 4,
         "width": 1,
         "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_1",
-        "row": 3,
-        "col": 4,
+        "row": 0,
+        "col": 1,
         "width": 2,
         "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_2",
-        "row": 5,
-        "col": 2,
-        "width": 3,
-        "height": 1,
+        "row": 0,
+        "col": 0,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_3",
         "row": 1,
-        "col": 2,
-        "width": 2,
-        "height": 1,
+        "col": 3,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 2,
-        "col": 1,
+        "row": 5,
+        "col": 0,
         "width": 2,
         "height": 2,
         "type": "obstacle"
@@ -6012,17 +5589,33 @@
       {
         "id": "obs_5",
         "row": 0,
-        "col": 0,
-        "width": 2,
-        "height": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_6",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
         "row": 4,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 3,
         "col": 1,
         "width": 1,
-        "height": 3,
+        "height": 2,
         "type": "obstacle"
       }
     ],
@@ -6031,17 +5624,883 @@
     "difficultyTier": "Zor"
   },
   {
-    "levelNumber": 100,
-    "season": 1,
+    "levelNumber": 89,
+    "season": 2,
     "gridRows": 7,
     "gridCols": 7,
     "maxMoves": 8,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 6,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 4,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 5,
+        "col": 3,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 0,
+        "col": 5,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 5,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 4,
+        "col": 0,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 90,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 8,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 6,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 0,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 0,
+        "col": 2,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 6,
+        "col": 2,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 4,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 4,
+        "col": 1,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 3,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 3,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Boss"
+  },
+  {
+    "levelNumber": 91,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 12,
+    "optimalMoves": 4,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 2,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 4,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 5,
+        "col": 0,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Orta"
+  },
+  {
+    "levelNumber": 92,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 11,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 5,
+        "col": 3,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 1,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 6,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 0,
+        "col": 4,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 93,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 10,
     "optimalMoves": 5,
     "initialBlocks": [
       {
         "id": "ball",
         "row": 3,
         "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 1,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 0,
+        "col": 0,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 5,
+        "col": 5,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 3,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 4,
+        "col": 1,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 3,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 3,
+        "col": 6,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 94,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 10,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 6,
+        "col": 5,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 2,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 4,
+        "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 5,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 3,
+        "col": 6,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Zor"
+  },
+  {
+    "levelNumber": 95,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 9,
+    "optimalMoves": 5,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 2,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 5,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 1,
+        "col": 5,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 1,
+        "col": 0,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Efsane"
+  },
+  {
+    "levelNumber": 96,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 9,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 5,
+        "col": 6,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 4,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 4,
+        "col": 0,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 5,
+        "col": 1,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 0,
+        "col": 5,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Efsane"
+  },
+  {
+    "levelNumber": 97,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 9,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 3,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 4,
+        "col": 0,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 6,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 2,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 1,
+        "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 2,
+        "col": 4,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 4,
+        "col": 4,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 2,
+        "col": 0,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Efsane"
+  },
+  {
+    "levelNumber": 98,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 8,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 0,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 0,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_3",
+        "row": 0,
+        "col": 0,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 4,
+        "col": 3,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 1,
+        "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 5,
+        "col": 2,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 0,
+        "col": 3,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 1,
+        "col": 3,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Efsane"
+  },
+  {
+    "levelNumber": 99,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 8,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 2,
         "width": 1,
         "height": 1,
         "type": "ball"
@@ -6056,15 +6515,108 @@
       },
       {
         "id": "obs_1",
-        "row": 5,
-        "col": 1,
+        "row": 1,
+        "col": 4,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 1,
+        "col": 5,
         "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
-        "id": "obs_2",
+        "id": "obs_3",
         "row": 4,
+        "col": 0,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_4",
+        "row": 0,
+        "col": 0,
+        "width": 2,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_5",
+        "row": 2,
+        "col": 5,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_6",
+        "row": 6,
+        "col": 1,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
+        "row": 6,
+        "col": 4,
+        "width": 3,
+        "height": 1,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 2,
+        "col": 1,
+        "width": 2,
+        "height": 1,
+        "type": "obstacle"
+      }
+    ],
+    "exitRow": 3,
+    "exitCol": 7,
+    "difficultyTier": "Efsane"
+  },
+  {
+    "levelNumber": 100,
+    "season": 2,
+    "gridRows": 7,
+    "gridCols": 7,
+    "maxMoves": 8,
+    "optimalMoves": 6,
+    "initialBlocks": [
+      {
+        "id": "ball",
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "type": "ball"
+      },
+      {
+        "id": "obs_0",
+        "row": 2,
+        "col": 6,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_1",
+        "row": 0,
+        "col": 4,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_2",
+        "row": 5,
         "col": 3,
         "width": 2,
         "height": 2,
@@ -6072,33 +6624,49 @@
       },
       {
         "id": "obs_3",
-        "row": 3,
+        "row": 1,
         "col": 2,
         "width": 1,
-        "height": 2,
+        "height": 3,
         "type": "obstacle"
       },
       {
         "id": "obs_4",
-        "row": 3,
-        "col": 4,
+        "row": 2,
+        "col": 0,
         "width": 2,
         "height": 1,
         "type": "obstacle"
       },
       {
         "id": "obs_5",
-        "row": 0,
-        "col": 1,
-        "width": 1,
-        "height": 1,
+        "row": 2,
+        "col": 3,
+        "width": 2,
+        "height": 2,
         "type": "obstacle"
       },
       {
         "id": "obs_6",
+        "row": 4,
+        "col": 2,
+        "width": 1,
+        "height": 3,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_7",
         "row": 1,
-        "col": 0,
-        "width": 3,
+        "col": 5,
+        "width": 1,
+        "height": 2,
+        "type": "obstacle"
+      },
+      {
+        "id": "obs_8",
+        "row": 0,
+        "col": 2,
+        "width": 1,
         "height": 1,
         "type": "obstacle"
       }

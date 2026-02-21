@@ -1,0 +1,5 @@
+{
+  "name": "Grid Dash",
+  "description": "A fast-paced block puzzle game prototype. The goal is to fit the given Tetris-like blocks into the grid perfectly in the shortest amount of time. The game features multiple levels of increasing difficulty.",
+  "requestFramePermissions": []
+}
